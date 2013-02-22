@@ -1,0 +1,10 @@
+		{{#encuesta}}
+			<fieldset data-role="controlgroup" >
+			<li data-swatch="a" class="ui-li ui-li-divider ui-btn ui-bar-a ui-corner-top" data-role="list-divider" role="" data-form="ui-bar-a">{{pregunta}}</li>
+			{{#respuestas}}
+     		<input type="radio" name="pregunta{{../idPregunta}}" id="respuesta{{idRespuesta}}" value="{{idRespuesta}}" checked="true"/>
+     		<label for="respuesta{{idRespuesta}}">{{respuesta}}</label>
+			{{/respuestas}}
+			</fieldset>
+		{{/encuesta}}
+		<a href="" data-role="button" onclick="hound.enviarEncuesta()">Contestar</a>

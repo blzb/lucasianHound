@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>My Page</title>
+<title>My Page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/jquery.mobile.structure-1.1.0.css" />
+	<link rel="stylesheet" href="css/hound.css" />
+	<script src="js-lib/jquery.js"></script>
+	<script src="js-lib/jquery.mobile.js"></script>
+        <script src="js/hound.common.js"></script>
+	<script src="js/hound.conf.js"></script>
+	<script src="js/hound.connection.js"></script>	
+	<script src="cordova-1.7.0.js"></script>
+	<style type="text/css" id="jqueryStyle">
+  	</style>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    $.mobile.showPageLoadingMsg("a","Descargando Actualizaciones",false);
+			hound.updateCompleted=function(){
+				$.mobile.hidePageLoadingMsg();
+				window.location = "home.html";
+			}
+			hound.updateApp();
+		 });
+	</script>
+</head>
+<body>
+
+<div data-role="page" data-theme="a" id="pagina">
+
+	<div data-role="content">
+	<br/>
+	<br/>
+	<canvas id="imagenes" width="175" height="175"></canvas>
+	<center id = "mensajes"></center>
+	</div><!-- /content -->
+
+
+</div><!-- /page -->
+
+</body>
+
+</head>
+<body>
+</html>

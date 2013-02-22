@@ -1,0 +1,26 @@
+			<div id="erroresComentariosForm"></div>
+			<form id="comentariosForm">
+				<ul data-role="listview" data-inset="true" id="comentariosFormListView">
+					<li data-role="fieldcontain">
+						<label for="comentarioNombre">Nombre:</label>
+						<input type="text" name="comentarioNombre" id="comentarioNombre"
+						class="required" /></li>
+					<li data-role="fieldcontain">
+						<label for="comentarioEmail">Email:</label>
+						<input type="text" name="comentarioEmail" id="comentarioEmail"
+						class="required email" />
+						</li>
+					<li data-role="fieldcontain">
+						<label for="comentarioTelefono">Telefono:</label>
+						<input type="text" name="comentarioTelefono"
+						id="comentarioTelefono" class="digits" minlength="8"
+						maxlength="12" />
+					</li>
+					<li data-role="fieldcontain">
+					<label for="comentarioComentario">Comentario:</label>
+					<textarea name="comentarioComentario" id="comentarioComentario"
+						class="required"></textarea>
+						</li>
+					</ul>
+					<a href="" data-role="button" onclick="hound.enviarComentario();">Enviar</a>
+			</form>
