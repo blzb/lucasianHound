@@ -2,7 +2,15 @@ hound.updateCompleted=function(){
     $.mobile.hidePageLoadingMsg();
     window.location = "home.html";
 }
-
+hound.updateReady= function(){
+    var ok = true;
+     for(var key in hound.updateables){
+        if(hound.updateables[key]<1){
+            ok = false;
+        }
+    }
+    return ok;
+}
 hound.isConnected= function() {    
     if(navigator.network){
         var networkState = navigator.network.connection.type;
@@ -18,7 +26,7 @@ hound.isConnected= function() {
 hound.enviarComentario = function(intentos) {
     if ($("#comentariosForm").valid()) {
         $.mobile.showPageLoadingMsg("a", "Descargando Actualizaciones",
-        false);
+            false);
         var comentarioJSON = {};
         comentarioJSON.nombre = $("#comentarioNombre").val();
         comentarioJSON.email = $("#comentarioEmail").val();
@@ -27,7 +35,7 @@ hound.enviarComentario = function(intentos) {
         $.ajax({
             type : "POST",
             url : this.config.remote_server
-                + hound.nuevas_versiones.comentarioHref,
+            + hound.nuevas_versiones.comentarioHref,
             data : JSON.stringify(comentarioJSON),
             contentType : "application/json",
             timeout : 30000,
@@ -44,45 +52,55 @@ hound.enviarComentario = function(intentos) {
 };
 hound.updateApp = function(intentos) {
     hound.infoLog("Obteniendo versiones...");
+    for(var key in hound.updateables){
+        hound.updateables[key]=1;
+    }
     $.ajax({	
         type : "GET",
         url : this.config.remote_server + this.config.appName
-            + "/versiones",
+        + "/versiones",
         cache : false,
         dataType : "text",
         success : function(data) {
             hound.infoLog("Versiones obtenidas..");
             hound.nuevas_versiones = JSON.parse(data);
             if (localStorage.getItem("versiones")) {
-                var versiones = JSON.parse(localStorage
-                .getItem("versiones"));
-                var actualizacion = new Array();
+                var versiones = JSON.parse(localStorage.getItem("versiones"));
                 if (versiones.versionContacto != hound.nuevas_versiones.versionContacto) {				
-                    actualizacion.push("contactos");
-                    localStorage.removeItem("contactos");
+                    hound.updateables.contactos=0;                    
+                    //localStorage.removeItem("contactos");
                     hound.getContactos();
                 }
                 if (versiones.versionPortada != hound.nuevas_versiones.versionPortada) {
-                    actualizacion.push("portada");
-                    localStorage.removeItem("portada");
+                    hound.updateables.portada=0;
+                    for(var key in hound.updateables){
+                        if(key.indexOf("imagen")>-1){
+                            hound.updateables[key]=0;
+                        }                        
+                    }
+                    //localStorage.removeItem("portada");
                     hound.getPortada();
                 }
                 if (versiones.versionPromociones != hound.nuevas_versiones.versionPromociones) {
+                    hound.updateables.promociones=0;
                     actualizacion.push("promociones");
-                    localStorage.removeItem("promociones");
+                    //localStorage.removeItem("promociones");
                     hound.getPromociones();
                 }
                 if (versiones.versionTema != hound.nuevas_versiones.versionTema) {
-                    actualizacion.push("tema");
-                    localStorage.removeItem("tema");
+                    hound.updateables.tema=0;
+                    //localStorage.removeItem("tema");
                     hound.getTema();
                 }
                 if (versiones.versionTiendas != hound.nuevas_versiones.versionTiendas) {
-                    actualizacion.push("tiendas");
-                    localStorage.removeItem("tiendas");
+                    hound.updateables.tiendas=0;
+                    //localStorage.removeItem("tiendas");
                     hound.getTiendas();
                 }
             } else {
+                for(var key in hound.updateables){
+                    hound.updateables[key]=0;
+                }
                 hound.getContactos();
                 hound.getPortada();
                 hound.getPromociones();
@@ -99,7 +117,7 @@ hound.updateApp = function(intentos) {
                 hound.updateCompleted();
             }
             else{
-                    navigator.app.exitApp();
+                navigator.app.exitApp();
             }                
         },
         tryCount: 0,
@@ -113,27 +131,19 @@ hound.getContactos = function(intentos) {
     $.ajax({
         type : "GET",
         url : this.config.remote_server
-            + hound.nuevas_versiones.contactosHref,
+        + hound.nuevas_versiones.contactosHref,
         cache : false,
         dataType : "text",
         success : function(data) {
             hound.infoLog("Contactos obtenidos...");
+            hound.updateables.contactos=1;
             localStorage.setItem("contactos", data);
         },        
         error : function(xhr,status, error) {
             hound.errorHandler(xhr, this, hound.errorPrint);
         },
         retryExceeded: function(){
-            if(hound.isDisplayable()){
-                hound.updateCompleted();
-            }
-            else{
-                if(navigator.app){
-                    navigator.app.exitApp();
-                }else{
-                    hound.errorPrint("Reintentos excedidos");
-                }
-            }                
+            hound.updateables.contactos=1;
         },
         tryCount: 0,
         retryLimit: 4,
@@ -146,16 +156,18 @@ hound.getImagen= function(imagen,url){
     $.ajax({
         type : "GET",
         url : hound.config.remote_server_files
-            + url+"large.dat",
+        + url+"large.dat",
         cache : false,
         dataType : "text",
         success: function(data){
             localStorage.setItem(imagen,data);
+            hound.updateables[imagen]=1;
         },
         error : function(xhr,status, error) {
             hound.errorHandler(xhr, this, hound.errorPrint);
         },
         retryExceeded: function(){
+            hound.updateables[imange]=1;
         },
         tryCount: 0,
         retryLimit: 4,
@@ -168,11 +180,12 @@ hound.getPortada = function(intentos) {
     $.ajax({
         type : "GET",
         url : this.config.remote_server
-            + hound.nuevas_versiones.portadaHref,
+        + hound.nuevas_versiones.portadaHref,
         cache : false,
         dataType : "text",
         success : function(data) {
             localStorage.setItem("portada", data);
+            hound.updateables.portada=1;
             hound.infoLog("Menu principal obtenido..");
             var portada=JSON.parse(data);
             for(var nombre in portada){
@@ -185,6 +198,7 @@ hound.getPortada = function(intentos) {
             hound.errorHandler(xhr, this, hound.errorPrint);
         },
         retryExceeded: function(){
+            hound.updateables.portada=1;
         },
         tryCount: 0,
         retryLimit: 4,
@@ -197,7 +211,7 @@ hound.getPromociones = function(intentos) {
     $.ajax({
         type : "GET",
         url : this.config.remote_server
-            + hound.nuevas_versiones.promocionesHref,
+        + hound.nuevas_versiones.promocionesHref,
         cache : false,
         dataType : "text",
         success : function(data) {										
@@ -250,11 +264,13 @@ hound.getPromociones = function(intentos) {
                 hound.promociones[i]=item;												
             }								
             localStorage.setItem("promociones",JSON.stringify(hound.promociones));														
+            hound.updateables.promociones=1;
         },
         error : function(xhr,status, error) {
             hound.errorHandler(xhr, this, hound.errorPrint);
         },
         retryExceeded: function(){
+            hound.updateables.promociones=1;
         },
         tryCount: 0,
         retryLimit: 4,
@@ -268,17 +284,19 @@ hound.getTema = function(intentos) {
     .ajax({
         type : "GET",
         url : this.config.remote_server_files
-            + hound.nuevas_versiones.temaHref,
+        + hound.nuevas_versiones.temaHref,
         cache : false,
         dataType : "text",
         success : function(data) {
             localStorage.setItem("tema", data);
+            hound.updateables.tema=1;
             hound.infoLog("Tema obtenido..");
         },
         error : function(xhr,status, error) {
             hound.errorHandler(xhr, this, hound.errorPrint);
         },
         retryExceeded: function(){
+            hound.updateables.tema=1;
         },
         tryCount: 0,
         retryLimit: 4,
@@ -291,17 +309,19 @@ hound.getTiendas = function(intentos) {
     $.ajax({
         type : "GET",
         url : this.config.remote_server
-            + hound.nuevas_versiones.tiendasHref,
+        + hound.nuevas_versiones.tiendasHref,
         cache : false,
         dataType : "text",
         success : function(data) {
             localStorage.setItem("tiendas", data);
+            hound.updateables.tiendas=1;
             hound.infoLog("Tiendas obtenidas..");
         },
         error : function(xhr,status, error) {
             hound.errorHandler(xhr, this, hound.errorPrint);
         },
         retryExceeded: function(){
+            hound.updateables.tiendas=1;
         },
         tryCount: 0,
         retryLimit: 4,
@@ -315,7 +335,7 @@ hound.getCategorias = function() {
     $.ajax({
         type : "GET",
         url : this.config.remote_server
-            + hound.nuevas_versiones.categoriasHref,
+        + hound.nuevas_versiones.categoriasHref,
         cache : false,
         dataType : "text",
         success : function(data) {
@@ -342,7 +362,7 @@ hound.getArticulos = function(idCategoria) {
     $.ajax({
         type : "GET",
         url : this.config.remote_server
-            + hound.categorias[idCategoria].articulosHref,
+        + hound.categorias[idCategoria].articulosHref,
         cache : false,
         dataType : "text",
         success : function(data) {
@@ -354,6 +374,7 @@ hound.getArticulos = function(idCategoria) {
             hound.errorHandler(xhr, this, hound.errorPrint);
         },
         retryExceeded: function(){
+            hound.errorAlert(this.mensajeError+": "+this.retryLimit+" intentos fallidos, operacion abortada intenta mas tarde");
         },
         tryCount: 0,
         retryLimit: 4,
@@ -367,7 +388,7 @@ hound.getArticulo= function(idArticulo){
     $.ajax({
         type : "GET",
         url : this.config.remote_server
-            + hound.articulos[idArticulo].href,
+        + hound.articulos[idArticulo].href,
         cache : false,
         dataType : "text",
         success : function(data) {
@@ -379,6 +400,7 @@ hound.getArticulo= function(idArticulo){
             hound.errorHandler(xhr, this, hound.errorPrint);
         },
         retryExceeded: function(){
+            hound.errorAlert(this.mensajeError+": "+this.retryLimit+" intentos fallidos, operacion abortada intenta mas tarde");
         },
         tryCount: 0,
         retryLimit: 4,
@@ -406,7 +428,7 @@ hound.getEncuestas= function(){
     $.ajax({
         type : "GET",
         url : this.config.remote_server
-            + hound.nuevas_versiones.encuestasHref,
+        + hound.nuevas_versiones.encuestasHref,
         cache : false,
         dataType : "text",
         success : function(data) {
@@ -418,6 +440,7 @@ hound.getEncuestas= function(){
             hound.errorHandler(xhr, this, hound.errorPrint);
         },
         retryExceeded: function(){
+            hound.errorAlert(this.mensajeError+": "+this.retryLimit+" intentos fallidos, operacion abortada intenta mas tarde");
         },
         tryCount: 0,
         retryLimit: 4,
@@ -432,7 +455,7 @@ hound.getEncuesta= function(idEncuesta){
     $.ajax({
         type : "GET",
         url : this.config.remote_server
-            + hound.encuestas[idEncuesta].preguntasHref,
+        + hound.encuestas[idEncuesta].preguntasHref,
         cache : false,
         dataType : "text",
         success : function(data) {
@@ -446,6 +469,7 @@ hound.getEncuesta= function(idEncuesta){
             hound.errorHandler(xhr, this, hound.errorPrint);
         },
         retryExceeded: function(){
+            hound.errorAlert(this.mensajeError+": "+this.retryLimit+" intentos fallidos, operacion abortada intenta mas tarde");
         },
         tryCount: 0,
         retryLimit: 4,
@@ -455,10 +479,10 @@ hound.getEncuesta= function(idEncuesta){
     });	
 };
 hound.verifyUpdatesCompleted = function() {
-    if (hound.isDisplayable()) {
+    if (hound.updateReady()) {
         clearInterval(hound.repeticion);
         localStorage.setItem("versiones", JSON
-        .stringify(hound.nuevas_versiones));
+            .stringify(hound.nuevas_versiones));
         this.updateCompleted();
     } 
 };
@@ -471,10 +495,9 @@ hound.enviarEncuesta = function(){
     $.ajax({
         type : "POST",
         url : this.config.remote_server
-            + hound.encuesta.postHref,
+        + hound.encuesta.postHref,
         data : JSON.stringify(encuestaJSON),
         contentType : "application/json",
-        timeout : 30000,
         success : function(data) {
             hound.infoAlert("Gracias", "Hemos recibido tus respuestas");
             $.mobile.hidePageLoadingMsg();
@@ -484,6 +507,7 @@ hound.enviarEncuesta = function(){
             hound.errorHandler(xhr, this, hound.errorPrint);
         },
         retryExceeded: function(){
+            hound.errorAlert(this.mensajeError+": "+this.retryLimit+" intentos fallidos, operacion abortada intenta mas tarde");
         },
         tryCount: 0,
         retryLimit: 4,
@@ -492,31 +516,7 @@ hound.enviarEncuesta = function(){
 
     });
 }
-hound.getListContactos = function() {
-    $.mobile.showPageLoadingMsg();
-    $("#contenidoContactos").hide();
-    $.ajax({
-        type : "GET",
-        url : this.config.remote_server
-            + hound.nuevas_versiones.contactosHref,
-        cache : false,
-        dataType : "text",
-        success : function(data) {
-            hound.contactos = JSON.parse(data);
-            hound.displayContactos();
-            $.mobile.changePage("#Contactos");
-        },
-        error : function(xhr,status, error) {
-            hound.errorHandler(xhr, this, hound.errorPrint);
-        },
-        retryExceeded: function(){
-        },
-        tryCount: 0,
-        retryLimit: 4,
-        timeout : 30000,
-        mensajeError: "Contactos"
-    });
-};
+
 hound.getContactosOffLine = function(){
     $.mobile.showPageLoadingMsg();
     $("#contenidoContactos").hide();		

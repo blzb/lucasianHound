@@ -12,6 +12,19 @@ hound = {
         "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre",
         "Diciembre"),
     config : {},
+    updateables : {
+        portada: 0,
+        tiendas: 0,
+        promociones: 0,
+        tema: 0,
+        contactos: 0,
+        imagenCatalogo: 0,
+        imagenComentarios: 0,
+        imagenContactos: 0,
+        imagenEncuesta: 0,
+        imagenLocalizador: 0,
+        imagenPromociones: 0
+    },
     nuevas_versiones : "",
     repeticion : '',
     portada : {},
@@ -180,6 +193,7 @@ hound.errorAlert = function(mensaje){
 hound.isDisplayable = function(){
     return (localStorage.portada && localStorage.tiendas
         && localStorage.promociones && localStorage.tema
-        && localStorage.contactos && localStorage.imagenCatalogo && localStorage.imagenComentarios && localStorage.imagenContactos && localStorage.imagenEncuesta
+        && localStorage.contactos && localStorage.imagenCatalogo && localStorage.imagenComentarios 
+        && localStorage.imagenContactos && localStorage.imagenEncuesta
         && localStorage.imagenLocalizador && localStorage.imagenPromociones);    
 }
