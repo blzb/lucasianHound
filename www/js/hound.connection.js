@@ -99,11 +99,7 @@ hound.updateApp = function(intentos) {
                 hound.updateCompleted();
             }
             else{
-                if(navigator.app){
                     navigator.app.exitApp();
-                }else{
-                    hound.errorPrint("Reintentos excedidos");
-                }
             }                
         },
         tryCount: 0,
