@@ -32,6 +32,9 @@
 
         </div><!-- /page -->
         <script type="text/javascript">
+             $(document).ready(function () {
+                 window.setTimeout(initApp,500);
+             });
             function initApp(){
                 $("#mensajes").empty();
                 $("#botonRecarga").hide();
@@ -40,7 +43,7 @@
                     hound.updateApp();
                 }
             }
-            window.setTimeout(initApp,1000);
+            
         </script>
 
     </body>
