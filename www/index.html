@@ -13,16 +13,6 @@
         <script src="phonegap.js"></script>
         <style type="text/css" id="jqueryStyle">
         </style>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $.mobile.showPageLoadingMsg("a","Descargando Actualizaciones",false);
-                if(hound.isConnected()){
-                    hound.updateApp();
-                }else{
-                    hound.updateCompleted();
-                }
-            });
-        </script>
     </head>
     <body>
 
@@ -31,12 +21,27 @@
             <div data-role="content">
                 <br/>
                 <br/>
-                <canvas id="imagenes" width="175" height="175"></canvas>
                 <center id = "mensajes" style="height: 9.5em; overflow-y: hidden;"></center>
+                <div id ="botonRecarga" style="display: none;">
+                    <center>
+                        <a href="" onclick="initApp();" data-role="button" data-icon="refresh" style="width: 50%;">Recargar Aplicacion</a>
+                    </center>
+                </div>
             </div><!-- /content -->
 
 
         </div><!-- /page -->
+        <script type="text/javascript">
+            function initApp(){
+                $("#mensajes").empty();
+                $("#botonRecarga").hide();
+                $.mobile.showPageLoadingMsg("a","Descargando Actualizaciones",false);
+                if(hound.isConnected()){
+                    hound.updateApp();
+                }
+            }
+            window.setTimeout(initApp,1000);
+        </script>
 
     </body>
 </html>

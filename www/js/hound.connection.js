@@ -117,7 +117,8 @@ hound.updateApp = function(intentos) {
                 hound.updateCompleted();
             }
             else{
-                navigator.app.exitApp();
+                $.mobile.hidePageLoadingMsg();
+                $("#botonRecarga").show();
             }                
         },
         tryCount: 0,

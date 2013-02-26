@@ -1,187 +1,188 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>My Page</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/jquery.mobile.structure-1.1.0.css" />
-<link rel="stylesheet" href="css/extra.css" />
-<script src="phonegap.js"></script>
-<script src="js-lib/jquery.js"></script>
-<script src="js-lib/jquery.mobile.js"></script>
-<script src="js/hound.common.js"></script>
-<script src="js/hound.home.js"></script>
-<script src="js/hound.conf.js"></script>
-<script src="js/hound.display.js"></script>
-<script src="js/hound.connection.js"></script>
-<script src="js-lib/jquery.validate.js"></script>
-<script src="js-lib/handlebars.js"></script>
-<script type="text/javascript"
-	src="http://maps.google.com/maps/api/js?sensor=true">
-</script>
-<script src="js/templates/template.js"></script>
-<style type="text/css" id="jqueryStyle">
-</style>
-</head>
-<body>
-	<div data-role="page" data-theme="a" id="menuPrincipal">
-		<div data-role="header" data-position="fixed">
-			<span class="ui-title" id="tituloMenuPrincipal"> </span>
-		</div>
-		<!-- /header -->
-		<div data-role="content" id="contenido">
-			<ul data-role="listview" data-inset="true">
-				<li id="menuCatalogo"><a href=""
-					onclick="hound.getCategorias();"> <img src=""
-						class="ui-li-icon" id="imagenCatalogo" /> <span id="textoCatalogo"></span></a>
-				</li>
-				<li id="menuContactos"><a href=""
-					onclick="hound.getContactosOffLine();"> <img src=""
-						class="ui-li-icon" id="imagenContactos" /> <span
-						id="textoContactos"></span>
-				</a></li>
-				<li id="menuPromociones"><a href=""
-					onclick="hound.getPromocionesOffline();"> <img src=""
-						class="ui-li-icon" id="imagenPromociones" /> <span
-						id="textoPromociones"></span></a></li>
-				<li id="menuEncuesta"><a href=""
-					onclick="hound.getEncuestas();"> <img src="" class="ui-li-icon"
-						id="imagenEncuesta" /> <span id="textoEncuesta"></span></a></li>
-				<li id="menuLocalizador"><a href=""
-					onclick="hound.inicializaMapa();"> <img src=""
-						class="ui-li-icon" id="imagenLocalizador" /> <span
-						id="textoLocalizador"></span></a></li>
-				<li id="menuComentarios"><a href="" onclick="hound.displayFormularioComentarios()"
-					data-transition="slide"> <img src="" class="ui-li-icon"
-						id="imagenComentarios" /> <span id="textoComentarios"></span></a></li>
-			</ul>
-		</div>
-                <a href="https://maps.google.com/maps?q=37.771008,+-122.41175&iwloc=A&hl=es">Abrir en google maps</a>
-		<!-- /content -->
-	</div>
-	<div data-role="page" data-theme="a" id="Catalogo">
-		<div data-role="header" data-position="fixed">
-			<span class="ui-title" id="tituloCatalogo"> </span>
-		</div>
-		<div data-role="content" id="contenidoCatalogo">
-			<ul data-role="listview" data-theme="a" id="listCatalogos"
-				data-inset="true">
-			</ul>
-		</div>
-	</div>
-	<div data-role="page" data-theme="a" id="Articulos">
-		<div data-role="header" data-position="fixed">
-			<span class="ui-title" id="tituloArticulos"> </span>
-		</div>
-		<div data-role="content" id="contenidoArticulos">
-			<div class="content-primary">
-					<div data-role="header" data-position="fixed">
-						<span class="ui-title" id="tituloArticulo"> </span>
-					</div>
-				<div data-role="content" id="contenidoArticulo"></div>
-			</div>
-			<div class="content-secondary">
-			<ul data-role="listview" data-theme="a" id="listArticulos"
-				data-inset="true">
-			</ul>
-			</div>		</div>
-	</div>
-	<div data-role="page" data-theme="a" id="Articulo">
-		<div data-role="header" data-position="fixed">
-			<span class="ui-title" id="tituloArticulo"> </span>
-		</div>
-		<div data-role="content" id="contenidoArticulo"></div>
-	</div>
-	<div data-role="page" data-theme="a" id="Contactos">
-		<div data-role="header" data-position="fixed">
-			<span class="ui-title" id="tituloContactos"> </span>
-		</div>
-		<div data-role="content" id="contenidoContactos">
-			<ul data-role="listview" data-theme="a" id="listContactos"
-				data-inset="true">
-			</ul>
-		</div>
-	</div>
-	<div data-role="page" data-theme="a" id="Promociones">
-		<div data-role="header" data-position="fixed">
-			<span class="ui-title" id="tituloPromociones"> </span>
-		</div>
-		<div data-role="content" id="contenidoPromociones">
-			<ul data-role="listview" data-theme="a" id="listPromociones"
-				data-inset="true">
-			</ul>
-		</div>
-	</div>
-	<div data-role="page" data-theme="a" id="Promocion">
-		<div data-role="header" data-position="fixed">
-			<span class="ui-title" id="tituloPromocion"> </span>
-		</div>
-		<div data-role="content" id="contenidoPromocion"></div>
-	</div>
-	<div data-role="page" data-theme="a" id="Encuestas">
-		<div data-role="header" data-position="fixed">
-			<span class="ui-title" id="tituloEncuestas"></span>
-		</div>
-		<div data-role="content" id="contenidoEncuestas">
-			<ul data-role="listview" data-theme="a" id="listEncuestas"
-				data-inset="true">
-			</ul>
-		</div>
-	</div>
-	<div data-role="page" data-theme="a" id="Encuesta">
-		<div data-role="header" data-position="fixed">
-			<span class="ui-title" id="tituloEncuesta"> </span>
-		</div>
-		<div data-role="content" id="contenidoEncuesta"></div>
-	</div>
-	<div data-role="page" data-theme="a" id="Localizador">
-		<div data-role="header" data-position="fixed">
-			<span class="ui-title" id="tituloLocalizador"> </span>
-		</div>
-		<div data-role="content" id="contenidoLocalizador"></div>
-	</div>
-	<div data-role="page" data-theme="a" id="opcionesLocalizador">
-		<div data-role="header" data-position="fixed">
-			<span class="ui-title" id="tituloOpcionesLocalizador">Opciones</span>
-		</div>
-		<div data-role="content" id="contenidoOpcionesLocalizador">
-			<ul data-role="listview" data-inset="true">
-				<li><a href="" onclick="hound.displayTiendas()">Lista de
-						ubicaciones</a></li>
-				<li><a href="" onclick="hound.displayTienda(hound.cercano.id);">Ubicacion
-						mas cercana</a></li>
-			</ul>
-		</div>
-	</div>
-	<div data-role="page" data-theme="a" id="listaLocalizador">
-		<div data-role="header" data-position="fixed">
-			<span class="ui-title" id="tituloListaLocalizador">Ubicaciones
-				existentes</span>
-		</div>
-		<div data-role="content" id="contenidoListaLocalizador">
-			<ul data-role="listview" data-theme="a" id="listListaLocalizador"
-				data-inset="true">
-			</ul>
-		</div>
-	</div>
-	<div data-role="page" data-theme="a" id="Mapa">
-		<div data-role="header" data-position="fixed">
-			<span class="ui-title" id="tituloMapa">Mapa</span>
-		</div>
-		<div data-role="content" id="contenidoMapa">
-			<div id="map_directions" style=""></div>
-			<div id="map_canvas"
-				style="width: 100%; height: 350px; color: #222222;"></div>
-		</div>
-	</div>
-	<div data-role="page" data-theme="a" id="Comentarios">
-		<div data-role="header" data-position="fixed">
-			<span class="ui-title" id="tituloComentarios"> </span>
-		</div>
-		<div data-role="content" id="contenidoComentarios">
-		</div>
-	</div>
-	<script type="text/javascript">
-		onDeviceReady();
-	</script>	
-</body>
+    <head>
+        <title>My Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/jquery.mobile.structure-1.1.0.css" />
+        <link rel="stylesheet" href="css/extra.css" />
+        <script src="phonegap.js"></script>
+        <script src="js-lib/jquery.js"></script>
+        <script src="js-lib/jquery.mobile.js"></script>
+        <script src="js/hound.common.js"></script>
+        <script src="js/hound.home.js"></script>
+        <script src="js/hound.conf.js"></script>
+        <script src="js/hound.display.js"></script>
+        <script src="js/hound.connection.js"></script>
+        <script src="js-lib/jquery.validate.js"></script>
+        <script src="js-lib/handlebars.js"></script>
+        <script type="text/javascript"
+                src="http://maps.google.com/maps/api/js?sensor=true">
+        </script>
+        <script src="js/templates/template.js"></script>
+        <style type="text/css" id="jqueryStyle">
+        </style>
+    </head>
+    <body>
+        <div data-role="page" data-theme="a" id="menuPrincipal">
+            <div data-role="header" data-position="fixed">
+                <span class="ui-title" id="tituloMenuPrincipal"> </span>
+            </div>
+            <!-- /header -->
+            <div data-role="content" id="contenido">
+                <ul data-role="listview" data-inset="true">
+                    <li id="menuCatalogo"><a href=""
+                                             onclick="hound.getCategorias();"> <img src=""
+                                                               class="ui-li-icon" id="imagenCatalogo" /> <span id="textoCatalogo"></span></a>
+                    </li>
+                    <li id="menuContactos"><a href=""
+                                              onclick="hound.getContactosOffLine();"> <img src=""
+                                                                     class="ui-li-icon" id="imagenContactos" /> <span
+                                                                     id="textoContactos"></span>
+                        </a></li>
+                    <li id="menuPromociones"><a href=""
+                                                onclick="hound.getPromocionesOffline();"> <img src=""
+                                                                       class="ui-li-icon" id="imagenPromociones" /> <span
+                                                                       id="textoPromociones"></span></a></li>
+                    <li id="menuEncuesta"><a href=""
+                                             onclick="hound.getEncuestas();"> <img src="" class="ui-li-icon"
+                                                              id="imagenEncuesta" /> <span id="textoEncuesta"></span></a></li>
+                    <li id="menuLocalizador"><a href=""
+                                                onclick="hound.inicializaMapa();"> <img src=""
+                                                                class="ui-li-icon" id="imagenLocalizador" /> <span
+                                                                id="textoLocalizador"></span></a></li>
+                    <li id="menuComentarios"><a href="" onclick="hound.displayFormularioComentarios()"
+                                                data-transition="slide"> <img src="" class="ui-li-icon"
+                                                      id="imagenComentarios" /> <span id="textoComentarios"></span></a></li>
+                    <li ><a href="https://maps.google.com/maps?q=37.771008,+-122.41175&iwloc=A&hl=es" > Abrir en google maps</a></li>
+                </ul>
+            </div>
+            <a href="">Abrir en google maps</a>
+            <!-- /content -->
+        </div>
+        <div data-role="page" data-theme="a" id="Catalogo">
+            <div data-role="header" data-position="fixed">
+                <span class="ui-title" id="tituloCatalogo"> </span>
+            </div>
+            <div data-role="content" id="contenidoCatalogo">
+                <ul data-role="listview" data-theme="a" id="listCatalogos"
+                    data-inset="true">
+                </ul>
+            </div>
+        </div>
+        <div data-role="page" data-theme="a" id="Articulos">
+            <div data-role="header" data-position="fixed">
+                <span class="ui-title" id="tituloArticulos"> </span>
+            </div>
+            <div data-role="content" id="contenidoArticulos">
+                <div class="content-primary">
+                    <div data-role="header" data-position="fixed">
+                        <span class="ui-title" id="tituloArticulo"> </span>
+                    </div>
+                    <div data-role="content" id="contenidoArticulo"></div>
+                </div>
+                <div class="content-secondary">
+                    <ul data-role="listview" data-theme="a" id="listArticulos"
+                        data-inset="true">
+                    </ul>
+                </div>		</div>
+        </div>
+        <div data-role="page" data-theme="a" id="Articulo">
+            <div data-role="header" data-position="fixed">
+                <span class="ui-title" id="tituloArticulo"> </span>
+            </div>
+            <div data-role="content" id="contenidoArticulo"></div>
+        </div>
+        <div data-role="page" data-theme="a" id="Contactos">
+            <div data-role="header" data-position="fixed">
+                <span class="ui-title" id="tituloContactos"> </span>
+            </div>
+            <div data-role="content" id="contenidoContactos">
+                <ul data-role="listview" data-theme="a" id="listContactos"
+                    data-inset="true">
+                </ul>
+            </div>
+        </div>
+        <div data-role="page" data-theme="a" id="Promociones">
+            <div data-role="header" data-position="fixed">
+                <span class="ui-title" id="tituloPromociones"> </span>
+            </div>
+            <div data-role="content" id="contenidoPromociones">
+                <ul data-role="listview" data-theme="a" id="listPromociones"
+                    data-inset="true">
+                </ul>
+            </div>
+        </div>
+        <div data-role="page" data-theme="a" id="Promocion">
+            <div data-role="header" data-position="fixed">
+                <span class="ui-title" id="tituloPromocion"> </span>
+            </div>
+            <div data-role="content" id="contenidoPromocion"></div>
+        </div>
+        <div data-role="page" data-theme="a" id="Encuestas">
+            <div data-role="header" data-position="fixed">
+                <span class="ui-title" id="tituloEncuestas"></span>
+            </div>
+            <div data-role="content" id="contenidoEncuestas">
+                <ul data-role="listview" data-theme="a" id="listEncuestas"
+                    data-inset="true">
+                </ul>
+            </div>
+        </div>
+        <div data-role="page" data-theme="a" id="Encuesta">
+            <div data-role="header" data-position="fixed">
+                <span class="ui-title" id="tituloEncuesta"> </span>
+            </div>
+            <div data-role="content" id="contenidoEncuesta"></div>
+        </div>
+        <div data-role="page" data-theme="a" id="Localizador">
+            <div data-role="header" data-position="fixed">
+                <span class="ui-title" id="tituloLocalizador"> </span>
+            </div>
+            <div data-role="content" id="contenidoLocalizador"></div>
+        </div>
+        <div data-role="page" data-theme="a" id="opcionesLocalizador">
+            <div data-role="header" data-position="fixed">
+                <span class="ui-title" id="tituloOpcionesLocalizador">Opciones</span>
+            </div>
+            <div data-role="content" id="contenidoOpcionesLocalizador">
+                <ul data-role="listview" data-inset="true">
+                    <li><a href="" onclick="hound.displayTiendas()">Lista de
+                            ubicaciones</a></li>
+                    <li><a href="" onclick="hound.displayTienda(hound.cercano.id);">Ubicacion
+                            mas cercana</a></li>
+                </ul>
+            </div>
+        </div>
+        <div data-role="page" data-theme="a" id="listaLocalizador">
+            <div data-role="header" data-position="fixed">
+                <span class="ui-title" id="tituloListaLocalizador">Ubicaciones
+                    existentes</span>
+            </div>
+            <div data-role="content" id="contenidoListaLocalizador">
+                <ul data-role="listview" data-theme="a" id="listListaLocalizador"
+                    data-inset="true">
+                </ul>
+            </div>
+        </div>
+        <div data-role="page" data-theme="a" id="Mapa">
+            <div data-role="header" data-position="fixed">
+                <span class="ui-title" id="tituloMapa">Mapa</span>
+            </div>
+            <div data-role="content" id="contenidoMapa">
+                <div id="map_directions" style=""></div>
+                <div id="map_canvas"
+                     style="width: 100%; height: 350px; color: #222222;"></div>
+            </div>
+        </div>
+        <div data-role="page" data-theme="a" id="Comentarios">
+            <div data-role="header" data-position="fixed">
+                <span class="ui-title" id="tituloComentarios"> </span>
+            </div>
+            <div data-role="content" id="contenidoComentarios">
+            </div>
+        </div>
+        <script type="text/javascript">
+            onDeviceReady();
+        </script>	
+    </body>
 </html>
