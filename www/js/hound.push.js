@@ -7,6 +7,8 @@ hound.successGCMRegistration= function(){
 };
 hound.pushRegistration = function(){
     alert("Registrando dispositivo::"+device.platform);
+    alert("Registrando dispositivo::"+window.plugins);
+    alert("Registrando dispositivo::"+window.plugins.pushNotification);
         var pushNotification = window.plugins.pushNotification;    
         // TODO: Enter your own GCM Sender ID in the register call for Android
         if (device.platform == 'android' || device.platform == 'Android') {
