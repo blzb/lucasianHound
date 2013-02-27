@@ -4,7 +4,7 @@ jQuery.fn.reset = function() {
     });
 };
 map = new Object();
-$.mobile.defaultPageTransition = "slide";
+$.mobile.defaultPageTransition = "fade";
 $.mobile.page.prototype.options.backBtnText = "Atras";
 $.mobile.page.prototype.options.addBackBtn = true;
 hound = {

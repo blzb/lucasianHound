@@ -13,6 +13,7 @@
         <script src="js/hound.conf.js"></script>
         <script src="js/hound.display.js"></script>
         <script src="js/hound.connection.js"></script>
+        <script src="js/hound.push.js"></script>
         <script src="js-lib/jquery.validate.js"></script>
         <script src="js-lib/handlebars.js"></script>
         <script type="text/javascript"
@@ -51,7 +52,7 @@
                                                                 class="ui-li-icon" id="imagenLocalizador" /> <span
                                                                 id="textoLocalizador"></span></a></li>
                     <li id="menuComentarios"><a href="" onclick="hound.displayFormularioComentarios()"
-                                                data-transition="slide"> <img src="" class="ui-li-icon"
+                                                data-transition="fade"> <img src="" class="ui-li-icon"
                                                       id="imagenComentarios" /> <span id="textoComentarios"></span></a></li>
                     <li ><a href="" onclick="hound.pushRegistration();">Registrar notificaciones</a></li>
                 </ul>
@@ -74,17 +75,10 @@
                 <span class="ui-title" id="tituloArticulos"> </span>
             </div>
             <div data-role="content" id="contenidoArticulos">
-                <div class="content-primary">
-                    <div data-role="header" >
-                        <span class="ui-title" id="tituloArticulo"> </span>
-                    </div>
-                    <div data-role="content" id="contenidoArticulo"></div>
-                </div>
-                <div class="content-secondary">
                     <ul data-role="listview" data-theme="a" id="listArticulos"
                         data-inset="true">
                     </ul>
-                </div>		</div>
+            </div>
         </div>
         <div data-role="page" data-theme="a" id="Articulo">
             <div data-role="header" >
