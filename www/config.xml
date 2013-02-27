@@ -20,7 +20,6 @@
     <preference name="target-device"    value="universal" />
     <preference name="fullscreen"       value="false" />
 
-    <feature name="http://api.phonegap.com/1.0/device"/>
     <feature name="http://api.phonegap.com/1.0/network"/>
     <!--feature name="http://api.phonegap.com/1.0/battery"/-->
     <!--feature name="http://api.phonegap.com/1.0/camera"/-->
@@ -58,6 +57,5 @@
     <gap:splash src="splash/android/hdpi.png" gap:platform="android" gap:density="hdpi" />
     <gap:splash src="splash/bb/splash.png" gap:platform="blackberry" />
     <gap:splash src="splash/winphone/splash.jpg" gap:platform="winphone" />
-
     <gap:plugin name="GenericPush"/>
 </widget>
