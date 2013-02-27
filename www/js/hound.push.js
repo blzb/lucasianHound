@@ -6,10 +6,12 @@ hound.successGCMRegistration= function(){
     alert("Registration completed");
 };
 hound.pushRegistration = function(){
+    alert("Registrando dispositivo");
     if(window.plugins){
         var pushNotification = window.plugins.pushNotification;    
         // TODO: Enter your own GCM Sender ID in the register call for Android
         if (device.platform == 'android' || device.platform == 'Android') {
+            alert("registrando andorid");
             pushNotification.register(this.successHandler, this.errorHandler,{
                 "senderID":hound.senderId,
                 "ecb":"hound.onNotificationGCM"
