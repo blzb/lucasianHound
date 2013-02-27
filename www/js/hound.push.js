@@ -6,7 +6,7 @@ hound.successGCMRegistration= function(){
     alert("Registration completed");
 };
 hound.pushRegistration = function(){
-    alert("Registrando dispositivo");
+    alert("Registrando dispositivo::"+device.platform);
         var pushNotification = window.plugins.pushNotification;    
         // TODO: Enter your own GCM Sender ID in the register call for Android
         if (device.platform == 'android' || device.platform == 'Android') {
@@ -16,7 +16,7 @@ hound.pushRegistration = function(){
                 "ecb":"hound.onNotificationGCM"
             });
         }
-        else if(device.platform =='iPhone' || device.platform=='iPad' || device.platform == "IPhone" || device.platform=="IPad") {
+        else {// if(device.platform =='iPhone' || device.platform=='iPad' || device.platform == "IPhone" || device.platform=="IPad") {
             alert("registering device");
             pushNotification.register(this.tokenHandler,this.errorHandler,{
                 "badge":"true",
