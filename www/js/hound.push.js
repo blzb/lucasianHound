@@ -3,20 +3,15 @@ hound.tokenHandler=function(msg) {
     alert("Token Handler " + msg);
 };
 hound.errorHandler=function(error) {
-        alert("Error Handler  " + error);
         alert(JSON.stringify(error));
 };
 hound.successGCMRegistration= function(){
-    alert("Registration completed");
 };
 hound.pushRegistration = function(){
-    alert("Registrando dispositivo::"+device.platform);
-    alert("Registrando dispositivo::"+window.plugins);
-    alert("Registrando dispositivo::"+window.plugins.pushNotification);
+	if(!localStorage.regId){
         var pushNotification = window.plugins.pushNotification;    
         // TODO: Enter your own GCM Sender ID in the register call for Android
         if (device.platform == 'android' || device.platform == 'Android') {
-            alert("registrando andorid");
             pushNotification.register(hound.successGCMRegistration, hound.errorHandler,{
                 "senderID":hound.config.senderId,
                 "ecb":"hound.onNotificationGCM"
@@ -31,6 +26,7 @@ hound.pushRegistration = function(){
                 "ecb":"hound.onNotificationAPN"
             });
         }
+	}
 }
 hound.onNotificationAPN = function(event) {
     var pushNotification = window.plugins.pushNotification;
@@ -72,7 +68,7 @@ hound.onNotificationGCM= function(e) {
                     data : JSON.stringify(datos),
                     contentType : "application/json",
                     success : function(data) {
-                        alert("datos del dispositivo Enviados");
+                        localStorage.setItem("regId",datos.regId);
                     },
                     error : function(xhr,status, error) {
                         hound.errorHandler(xhr, this, hound.errorPrint);
