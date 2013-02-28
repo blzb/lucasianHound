@@ -2,6 +2,10 @@ hound.tokenHandler=function(msg) {
     receivedElement.setAttribute('style', 'display:block;');
     alert("Token Handler " + msg);
 };
+hound.errorHandler=function(error) {
+        alert("Error Handler  " + error);
+        alert(error);
+};
 hound.successGCMRegistration= function(){
     alert("Registration completed");
 };
@@ -13,14 +17,14 @@ hound.pushRegistration = function(){
         // TODO: Enter your own GCM Sender ID in the register call for Android
         if (device.platform == 'android' || device.platform == 'Android') {
             alert("registrando andorid");
-            pushNotification.register(this.successHandler, this.errorHandler,{
+            pushNotification.register(hound.successGCMRegistration, hound.errorHandler,{
                 "senderID":hound.config.senderId,
                 "ecb":"hound.onNotificationGCM"
             });
         }
         else {// if(device.platform =='iPhone' || device.platform=='iPad' || device.platform == "IPhone" || device.platform=="IPad") {
             alert("registering device");
-            pushNotification.register(this.tokenHandler,this.errorHandler,{
+            pushNotification.register(hound.tokenHandler,hound.errorHandler,{
                 "badge":"true",
                 "sound":"true",
                 "alert":"true",
