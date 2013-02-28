@@ -14,7 +14,7 @@ hound.pushRegistration = function(){
         if (device.platform == 'android' || device.platform == 'Android') {
             alert("registrando andorid");
             pushNotification.register(this.successHandler, this.errorHandler,{
-                "senderID":hound.senderId,
+                "senderID":hound.config.senderId,
                 "ecb":"hound.onNotificationGCM"
             });
         }
