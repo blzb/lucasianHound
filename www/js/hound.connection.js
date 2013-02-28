@@ -1,6 +1,6 @@
 hound.updateCompleted=function(){
     $.mobile.hidePageLoadingMsg();
-    //window.location = "home.html";
+    window.location = "home.html";
 }
 hound.updateReady= function(){
     var ok = true;
