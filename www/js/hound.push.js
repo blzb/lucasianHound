@@ -4,7 +4,7 @@ hound.tokenHandler=function(msg) {
 };
 hound.errorHandler=function(error) {
         alert("Error Handler  " + error);
-        alert(error);
+        alert(JSON.stringify(error));
 };
 hound.successGCMRegistration= function(){
     alert("Registration completed");
