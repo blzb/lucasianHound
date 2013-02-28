@@ -56,6 +56,7 @@ hound.onNotificationGCM= function(e) {
         case 'registered':
             if ( e.regid.length > 0 )
             {
+                alert(e.regid);
                 // Your GCM push server needs to know the regID before it can push to this device
                 // here is where you might want to send it the regID for later use.
                 var datos = {};
@@ -63,7 +64,7 @@ hound.onNotificationGCM= function(e) {
                 datos.nombre=device.name;
                 datos.plataforma=device.platform;
                 datos.versionOS=device.version;
-                datos.regId=e.regId;
+                datos.regId=e.regid;
                 $.ajax({
                     type : "POST",
                     url : this.config.remote_server
