@@ -90,9 +90,7 @@ hound.onNotificationGCM= function(e) {
             hound.infoAlert("Notificacion", e.message);
             hound.infoAlert("Mensaje", JSON.stringify(e));
             hound.infoAlert("Payload", e.payload+"::"+JSON.stringify(e.payload));
-            if(e.payload.actualizar){
-                window.location = "index.html";
-            }
+            hound.infoAlert("Payload", e.payload.actualizar+"::"+JSON.stringify(e.payload.actualizar));
             break;
 
         case 'error':
