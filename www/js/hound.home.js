@@ -2,7 +2,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
     $("#jqueryStyle").html(localStorage.getItem("tema"));	
     hound.loadApp();
-	hound.pushRegistration();
+    hound.pushRegistration();
     hound.displayMainMenu();
     hound.validateComentario();
 };
