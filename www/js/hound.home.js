@@ -5,7 +5,11 @@ function onDeviceReady() {
     hound.pushRegistration();
     hound.displayMainMenu();
     hound.validateComentario();
+    document.addEventListener("resume", hound.onResume, false);
 };
+hound.onResume = function(){
+    window.location="index.html";
+}
 $(document).bind(
     "pagechange",
     function(e, data) {
