@@ -8,7 +8,6 @@ hound.errorHandler=function(error) {
 hound.successGCMRegistration= function(){
 };
 hound.pushRegistration = function(){
-	if(!localStorage.regId){
         var pushNotification = window.plugins.pushNotification;    
         // TODO: Enter your own GCM Sender ID in the register call for Android
         if (device.platform == 'android' || device.platform == 'Android') {
@@ -26,7 +25,6 @@ hound.pushRegistration = function(){
                 "ecb":"hound.onNotificationAPN"
             });
         }
-	}
 }
 hound.onNotificationAPN = function(event) {
     var pushNotification = window.plugins.pushNotification;
