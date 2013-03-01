@@ -52,7 +52,6 @@ hound.onNotificationGCM= function(e) {
         case 'registered':
             if ( e.regid.length > 0 )
             {
-                alert(e.regid);
                 // Your GCM push server needs to know the regID before it can push to this device
                 // here is where you might want to send it the regID for later use.
                 var datos = {};
@@ -89,6 +88,10 @@ hound.onNotificationGCM= function(e) {
             // this is the actual push notification. its format depends on the data model
             // of the intermediary push server which must also be reflected in GCMIntentService.java
             alert(JSON.stringify(e));
+            var datos = e;
+            if(e.actualizar){
+                window.location = "index.html";
+            }
             break;
 
         case 'error':
