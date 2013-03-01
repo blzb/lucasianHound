@@ -88,9 +88,9 @@ hound.onNotificationGCM= function(e) {
             // this is the actual push notification. its format depends on the data model
             // of the intermediary push server which must also be reflected in GCMIntentService.java
             hound.infoAlert("Notificacion", e.message);
-            hound.infoAlert("Mensaje", JSON.stringify(e));
-            hound.infoAlert("Payload", e.payload+"::"+JSON.stringify(e.payload));
-            hound.infoAlert("Payload", e.payload.actualizar+"::"+JSON.stringify(e.payload.actualizar));
+            if(e.payload.actualizar){
+                window.location = "index.html";
+            }
             break;
 
         case 'error':
