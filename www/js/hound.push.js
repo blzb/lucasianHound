@@ -89,6 +89,7 @@ hound.onNotificationGCM= function(e) {
             // of the intermediary push server which must also be reflected in GCMIntentService.java
             hound.infoAlert("Notificacion", e.message);
             hound.infoAlert("Mensaje", JSON.stringify(e));
+            hound.infoAlert("Payload", e.payload+"::"+JSON.stringify(e.payload));
             if(e.payload.actualizar){
                 window.location = "index.html";
             }
