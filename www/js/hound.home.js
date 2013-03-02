@@ -8,7 +8,7 @@ function onDeviceReady() {
     document.addEventListener("resume", hound.onResume, false);
 };
 hound.onResume = function(){
-    window.location="index.html";
+
 }
 $(document).bind(
     "pagechange",
