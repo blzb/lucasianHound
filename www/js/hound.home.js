@@ -61,7 +61,7 @@ $(document).bind("pagebeforechange", function(e, data){
     if(data.toPage[0].id){    
         if(data.options.fromPage && data.toPage){
         if(data.options.fromPage.attr("id")!== data.toPage.attr("id")){
-            $("#"+data.options.fromPage.attr("id")+"> .ui-content").fadeOut();   
+            $("#"+data.options.fromPage.attr("id")+"> .ui-content").hide();   
         }
     }
     }
@@ -73,5 +73,5 @@ $(document).bind("pagebeforechange", function(e, data){
 $(document).bind("pagebeforeshow", function(e, data){
 });
 $(document).bind("pageshow", function(e, data){
-    $(e.target.children[1]).fadeIn();
+    $(e.target.children[1]).show();
 });
