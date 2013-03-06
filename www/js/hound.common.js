@@ -62,7 +62,6 @@ hound = {
         hound.tiendas = JSON.parse(localStorage.getItem("tiendas"));
     },
     inicializaMapa : function() {
-        $.mobile.showPageLoadingMsg();
 
         navigator.geolocation.getCurrentPosition(function(position) {
             hound.currentPosition = new google.maps.LatLng(
@@ -80,7 +79,6 @@ hound = {
                     document.getElementById("map_canvas"), myOptions);
                 directionsDisplay = new google.maps.DirectionsRenderer({
                     suppressMarkers : false,
-                    panel : document.getElementById("map_directions"),
                     map : map
                 });
             }
@@ -116,11 +114,11 @@ hound = {
                     }
                 }
                 hound.cercano = menor;
-                $.mobile.hidePageLoadingMsg();
-                $.mobile.changePage("#opcionesLocalizador");
             }
             hound.mapInitialized = true;
         });
+                $.mobile.changePage("#opcionesLocalizador");
+
     }
 }
 hound.infoLog= function(mensaje){
@@ -170,7 +168,7 @@ hound.infoAlert = function(titulo, mensaje){
     }else{
         alert(mensaje);
     }
-    };
+};
 hound.errorAlert = function(mensaje){	
     if(navigator.notification){
         navigator.notification.vibrate(500);
