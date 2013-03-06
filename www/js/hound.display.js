@@ -125,10 +125,30 @@ hound.displayTiendas = function() {
             tienda : item
         }));
     }
+    var masCercana = {
+        'idTienda':'-1', 
+        'nombre':'Ubicación mas cercana', 
+        'direccion':''
+    };
+    $("#listListaLocalizador").append(template({
+        tienda : masCercana
+    }));
+
     $.mobile.changePage("#listaLocalizador");
 }
 hound.displayTienda = function(idTienda) {
-		
+    if(idTienda==-1){
+        window.open('https://maps.google.com/', '_system');
+    }else{
+        var tienda = hound.tiendas[idTienda];
+        var queryUrl = 'https://maps.google.com/maps?z=14&t=m&q=loc:'+tienda.latitud
+        +'+'+tienda.longitud
+        +'('+tienda.nombre
+        +':'+tienda.direccion
+        +')';    
+        window.open(queryUrl, '_system');
+    }
+/*
     $.mobile.changePage("#Mapa");
     directionsDisplay.setDirections({
         routes: []
@@ -168,7 +188,7 @@ hound.displayTienda = function(idTienda) {
         if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(result);
         }
-    });		
+    });	*/	
 }
 hound.displayFormularioComentarios = function(){
     $("#contenidoComentarios").html("");
