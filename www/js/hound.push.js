@@ -1,12 +1,12 @@
 hound.tokenHandler=function(msg) {
-    receivedElement.setAttribute('style', 'display:block;');
     alert("Token Handler " + msg);
+    sendDeviceInfo(msg);
 };
 hound.errorHandler=function(error) {
-        alert(JSON.stringify(error));
+    alert(JSON.stringify(error));
 };
 hound.successGCMRegistration= function(){
-};
+    };
 hound.pushRegistration = function(){
     if(window.plugins && window.plugins.pushNotification){
         var pushNotification = window.plugins.pushNotification;    
@@ -46,41 +46,44 @@ hound.onNotificationAPN = function(event) {
         snd.play();
     }
 };
+hound.sendDeviceInfo = function(regId){
+    var datos = {};
+    datos.uuid=device.uuid;
+    datos.nombre=device.name;
+    datos.plataforma=device.platform;
+    datos.versionOS=device.version;
+    datos.regId=regId;
+    $.ajax({
+        type : "POST",
+        url : this.config.remote_server
+        + this.config.appName +"/dispositivo",
+        data : JSON.stringify(datos),
+        contentType : "application/json",
+        success : function(data) {
+            localStorage.setItem("regId",datos.regId);
+        },
+        error : function(xhr,status, error) {
+            hound.errorHandler(xhr, this, hound.errorPrint);
+        },
+        retryExceeded: function(){
+            hound.errorAlert(this.mensajeError+": "+this.retryLimit+" intentos fallidos, operacion abortada intenta mas tarde");
+        },
+        tryCount: 0,
+        retryLimit: 4,
+        timeout : 30000,
+        mensajeError: "Registro de dispositivo"
+
+    });
+}
 hound.onNotificationGCM= function(e) {
     switch( e.event )
     {
         case 'registered':
             if ( e.regid.length > 0 )
             {
-                // Your GCM push server needs to know the regID before it can push to this device
-                // here is where you might want to send it the regID for later use.
-                var datos = {};
-                datos.uuid=device.uuid;
-                datos.nombre=device.name;
-                datos.plataforma=device.platform;
-                datos.versionOS=device.version;
-                datos.regId=e.regid;
-                $.ajax({
-                    type : "POST",
-                    url : this.config.remote_server
-                    + this.config.appName +"/dispositivo",
-                    data : JSON.stringify(datos),
-                    contentType : "application/json",
-                    success : function(data) {
-                        localStorage.setItem("regId",datos.regId);
-                    },
-                    error : function(xhr,status, error) {
-                        hound.errorHandler(xhr, this, hound.errorPrint);
-                    },
-                    retryExceeded: function(){
-                        hound.errorAlert(this.mensajeError+": "+this.retryLimit+" intentos fallidos, operacion abortada intenta mas tarde");
-                    },
-                    tryCount: 0,
-                    retryLimit: 4,
-                    timeout : 30000,
-                    mensajeError: "Registro de dispositivo"
-
-                });
+            // Your GCM push server needs to know the regID before it can push to this device
+            // here is where you might want to send it the regID for later use.
+                sendDeviceInfo(e.regid);
             }
             break;
 
