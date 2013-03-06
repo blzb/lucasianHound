@@ -138,7 +138,7 @@ hound.displayTiendas = function() {
 }
 hound.displayTienda = function(idTienda) {
     if(idTienda==-1){
-        window.open('https://maps.google.com/', '_system');
+        window.open(encodeURI('https://maps.google.com/'), '_system');
     }else{
         var tienda = hound.tiendas[idTienda];
         var queryUrl = 'https://maps.google.com/maps?z=14&t=m&q=loc:'+tienda.latitud
@@ -146,7 +146,7 @@ hound.displayTienda = function(idTienda) {
         +'('+tienda.nombre
         +':'+tienda.direccion
         +')';    
-        window.open(queryUrl, '_system');
+        window.open(encodeURI(queryUrl), '_system');
     }
 /*
     $.mobile.changePage("#Mapa");
