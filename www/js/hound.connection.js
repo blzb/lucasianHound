@@ -83,7 +83,7 @@ hound.updateApp = function(intentos) {
                 }
                 if (versiones.versionPromociones != hound.nuevas_versiones.versionPromociones) {
                     hound.updateables.promociones=0;
-                    actualizacion.push("promociones");
+                    //actualizacion.push("promociones");
                     //localStorage.removeItem("promociones");
                     hound.getPromociones();
                 }
