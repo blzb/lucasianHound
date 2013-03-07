@@ -37,22 +37,9 @@ hound.pushRegistration = function(){
 }
 hound.onNotificationAPN = function(event) {
     var pushNotification = window.plugins.pushNotification;
-    console.log(event);
-    console.log(JSON.stringify(event));
-    console.log("Received a notification! " + event.alert);
-    console.log("event sound " + event.sound);
-    console.log("event badge "    + event.badge);
-    console.log("event " + event);
-    if (event.alert) {
-        navigator.notification.alert(event.alert);
-    }
-    if (event.badge) {
-        console.log("Set badge on  " + pushNotification);
-        pushNotification.setApplicationIconBadgeNumber(this.successHandler, event.badge);
-    }
-    if (event.sound) {
-        var snd = new Media(event.sound);
-        snd.play();
+    hound.infoAlert(event.titulo, event.alert);
+    if(event.actualizar){
+        window.location = "index.html";
     }
 };
 hound.sendDeviceInfo = function(regId){
@@ -90,8 +77,8 @@ hound.onNotificationGCM= function(e) {
         case 'registered':
             if ( e.regid.length > 0 )
             {
-            // Your GCM push server needs to know the regID before it can push to this device
-            // here is where you might want to send it the regID for later use.
+                // Your GCM push server needs to know the regID before it can push to this device
+                // here is where you might want to send it the regID for later use.
                 hound.sendDeviceInfo(e.regid);
             }
             break;
@@ -99,7 +86,7 @@ hound.onNotificationGCM= function(e) {
         case 'message':
             // this is the actual push notification. its format depends on the data model
             // of the intermediary push server which must also be reflected in GCMIntentService.java
-            hound.infoAlert("Notificacion", e.message);
+            hound.infoAlert(e.payload.titulo, e.message);
             if(e.payload.actualizar){
                 window.location = "index.html";
             }
