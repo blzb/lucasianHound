@@ -32,9 +32,10 @@
 
         </div><!-- /page -->
         <script type="text/javascript">
-             $(document).ready(function () {
-                 window.setTimeout(initApp,500);
-             });
+            /*$(document).ready(function () {
+                window.setTimeout(initApp,500);
+            });*/
+            document.addEventListener("deviceready", initApp, false);
             function initApp(){
                 $("#mensajes").empty();
                 $("#botonRecarga").hide();
