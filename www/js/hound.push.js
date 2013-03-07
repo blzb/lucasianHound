@@ -20,7 +20,7 @@ hound.pushRegistration = function(){
                 "ecb":"hound.onNotificationGCM"
             });
         }
-        else if(device.platform =='iPhone' || device.platform=='iPad' || device.platform == "IPhone" || device.platform=="IPad") {
+        else if(device.platform =='iPhone' || device.platform=='iPad' || device.platform == "IPhone" || device.platform=="IPad" || device.platform=="IOS") {
             console.log("registering ios");
             pushNotification.register(hound.tokenHandler,hound.errorIphone,{
                 "badge":"true",

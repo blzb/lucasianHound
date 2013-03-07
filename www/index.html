@@ -37,6 +37,7 @@
             });*/
             document.addEventListener("deviceready", initApp, false);
             function initApp(){
+                console.log("first on device ready");
                 $("#mensajes").empty();
                 $("#botonRecarga").hide();
                 $.mobile.showPageLoadingMsg("a","Descargando Actualizaciones",false);
