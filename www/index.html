@@ -38,9 +38,9 @@
                 window.setTimeout(initApp,500);
             });*/
             document.addEventListener("deviceready", initApp, false);
-            function initApp(){
-                hound.pushRegistration();
+            function initApp(){                
                 console.log("first on device ready");
+                hound.pushRegistration();
                 $("#mensajes").empty();
                 $("#botonRecarga").hide();
                 $.mobile.showPageLoadingMsg("a","Descargando Actualizaciones",false);
