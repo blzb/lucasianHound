@@ -11,6 +11,7 @@
         <script src="js/hound.common.js"></script>
         <script src="js/hound.conf.js"></script>
         <script src="js/hound.connection.js"></script>	        
+        <script src="js/hound.push.js"></script>
         <style type="text/css" id="jqueryStyle">
         </style>
     </head>
@@ -37,6 +38,7 @@
             });*/
             document.addEventListener("deviceready", initApp, false);
             function initApp(){
+                hound.pushRegistration();
                 console.log("first on device ready");
                 $("#mensajes").empty();
                 $("#botonRecarga").hide();

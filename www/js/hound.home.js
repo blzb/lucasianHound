@@ -3,10 +3,8 @@ function onDeviceReady() {
     console.log("on device ready function");
     $("#jqueryStyle").html(localStorage.getItem("tema"));	
     hound.loadApp();
-    hound.pushRegistration();
     hound.displayMainMenu();
     hound.validateComentario();
-    document.addEventListener("resume", hound.onResume, false);
 };
 hound.onResume = function(){
 
