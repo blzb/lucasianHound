@@ -1,9 +1,9 @@
 hound.tokenHandler=function(msg) {
-    alert("Token Handler " + msg);
+    console.log("Token Handler " + msg);
     hound.sendDeviceInfo(msg);
 };
 hound.errorIphone=function(error) {
-    alert(JSON.stringify(error));
+    console.log(JSON.stringify(error));
 };
 hound.successGCMRegistration= function(){
     };
@@ -18,7 +18,7 @@ hound.pushRegistration = function(){
             });
         }
         else {// if(device.platform =='iPhone' || device.platform=='iPad' || device.platform == "IPhone" || device.platform=="IPad") {
-            alert("registering device");
+            console.log("registering device");
             pushNotification.register(hound.tokenHandler,hound.errorIphone,{
                 "badge":"true",
                 "sound":"true",
@@ -38,7 +38,7 @@ hound.onNotificationAPN = function(event) {
         navigator.notification.alert(event.alert);
     }
     if (event.badge) {
-        alert("Set badge on  " + pushNotification);
+        console.log("Set badge on  " + pushNotification);
         pushNotification.setApplicationIconBadgeNumber(this.successHandler, event.badge);
     }
     if (event.sound) {
@@ -97,11 +97,11 @@ hound.onNotificationGCM= function(e) {
             break;
 
         case 'error':
-            alert('GCM error = '+e.msg);
+            console.log('GCM error = '+e.msg);
             break;
 
         default:
-            alert('An unknown GCM event has occurred');
+            console.log('An unknown GCM event has occurred');
             break;
     }
 }
