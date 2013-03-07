@@ -5,7 +5,7 @@
 
 	// Call this to register for push notifications. Content of [options] depends on whether we are working with APNS (iOS) or GCM (Android)
 	PushNotification.prototype.register = function(successCallback, errorCallback, options) {
-        alert("About to register");
+        console.log("About to register");
 		cordovaRef.exec(successCallback, errorCallback, "PushPlugin", "register", [options]);
 	};
 
