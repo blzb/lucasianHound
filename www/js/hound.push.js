@@ -37,10 +37,12 @@ hound.pushRegistration = function(){
 }
 hound.onNotificationAPN = function(event) {
     var pushNotification = window.plugins.pushNotification;
-    alert("Received a notification! " + event.alert);
-    alert("event sound " + event.sound);
-    alert("event badge " + event.badge);
-    alert("event " + event);
+    console.log(event);
+    console.log(JSON.stringify(event));
+    console.log("Received a notification! " + event.alert);
+    console.log("event sound " + event.sound);
+    console.log("event badge "    + event.badge);
+    console.log("event " + event);
     if (event.alert) {
         navigator.notification.alert(event.alert);
     }
