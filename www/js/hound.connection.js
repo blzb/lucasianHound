@@ -1,6 +1,6 @@
 hound.updateCompleted=function(){
     $.mobile.hidePageLoadingMsg();
-    window.location = "home.html";
+    window.location = "grid.html";
 }
 hound.updateReady= function(){
     var ok = true;
@@ -332,7 +332,7 @@ hound.getTiendas = function(intentos) {
 };
 hound.getCategorias = function() {
     $.mobile.showPageLoadingMsg();
-    $("#contenidoCatalogo").hide();
+    //$("#contenidoCatalogo").hide();
     $.ajax({
         type : "GET",
         url : this.config.remote_server
@@ -358,7 +358,7 @@ hound.getCategorias = function() {
 };
 hound.getArticulos = function(idCategoria) {	
     $.mobile.showPageLoadingMsg();
-    $("#contenidoArticulos").hide();
+    //$("#contenidoArticulos").hide();
     $("#tituloArticulos").html(hound.categorias[idCategoria].nombre);
     $.ajax({
         type : "GET",
@@ -385,7 +385,7 @@ hound.getArticulos = function(idCategoria) {
 };
 hound.getArticulo= function(idArticulo){
     $.mobile.showPageLoadingMsg();	
-    $("#contenidoArticulo").hide();
+    //$("#contenidoArticulo").hide();
     $.ajax({
         type : "GET",
         url : this.config.remote_server
@@ -411,21 +411,21 @@ hound.getArticulo= function(idArticulo){
 };
 hound.getPromocionesOffline = function() {		
     $.mobile.showPageLoadingMsg();
-    $("#contenidoPromociones").hide();		
+    //$("#contenidoPromociones").hide();		
     hound.promociones=JSON.parse(localStorage.getItem("promociones"));
     hound.displayPromociones();
     $.mobile.changePage("#Promociones");
 };				
 hound.getPromocionOffline= function(idPromocion){
     $.mobile.showPageLoadingMsg();	
-    $("#contenidoPromocion").hide();
+    //$("#contenidoPromocion").hide();
     hound.promocion=hound.promociones[idPromocion];
     hound.displayPromocion();
     $.mobile.changePage("#Promocion");	
 };	
 hound.getEncuestas= function(){
     $.mobile.showPageLoadingMsg();
-    $("#listEncuestas").hide();
+    //$("#listEncuestas").hide();
     $.ajax({
         type : "GET",
         url : this.config.remote_server
@@ -452,7 +452,7 @@ hound.getEncuestas= function(){
 };
 hound.getEncuesta= function(idEncuesta){
     $.mobile.showPageLoadingMsg();	
-    $("#contenidoEncuesta").hide();
+    //$("#contenidoEncuesta").hide();
     $.ajax({
         type : "GET",
         url : this.config.remote_server
@@ -520,7 +520,7 @@ hound.enviarEncuesta = function(){
 
 hound.getContactosOffLine = function(){
     $.mobile.showPageLoadingMsg();
-    $("#contenidoContactos").hide();		
+    //$("#contenidoContactos").hide();		
     hound.contactos=JSON.parse(localStorage.getItem("contactos"));
     hound.displayContactos();
     $.mobile.changePage("#Contactos");	

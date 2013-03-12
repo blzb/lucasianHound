@@ -34,10 +34,11 @@
 
         </div><!-- /page -->
         <script type="text/javascript">
-            /*$(document).ready(function () {
-                window.setTimeout(initApp,500);
-            });*/
-            document.addEventListener("deviceready", initApp, false);
+            $(document).ready(function () {
+                initApp();
+            });
+           // document.addEventListener("deviceready", initApp, false);
+           
             function initApp(){                
                 console.log("first on device ready");
                 hound.pushRegistration();

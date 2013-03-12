@@ -1,5 +1,5 @@
 hound.displayMenuItem = function(nombre) {
-    $("#texto" + nombre).text(eval("hound.portada.texto" + nombre));
+    $(".texto" + nombre).text(eval("hound.portada.texto" + nombre));
     $("#titulo" + nombre).text(eval("hound.portada.texto" + nombre));
 };
 hound.displayMainMenu = function() {
@@ -11,13 +11,13 @@ hound.displayMainMenu = function() {
         hound.displayMenuItem("Catalogo");
         hound.displayMenuItem("Comentarios");
         hound.displayMenuItem("Encuesta");            
-        $("#imagenCatalogo").attr("src",localStorage.getItem("imagenCatalogo"));
-        $("#imagenComentarios").attr("src",localStorage.getItem("imagenComentarios"));
-        $("#imagenEncuesta").attr("src",localStorage.getItem("imagenEncuesta"));
+        $(".imagenCatalogo").attr("src",localStorage.getItem("imagenCatalogo"));
+        $(".imagenComentarios").attr("src",localStorage.getItem("imagenComentarios"));
+        $(".imagenEncuesta").attr("src",localStorage.getItem("imagenEncuesta"));
     }
-    $("#imagenLocalizador").attr("src",localStorage.getItem("imagenLocalizador"));
-    $("#imagenContactos").attr("src",localStorage.getItem("imagenContactos"));
-    $("#imagenPromociones").attr("src",localStorage.getItem("imagenPromociones"));
+    $(".imagenLocalizador").attr("src",localStorage.getItem("imagenLocalizador"));
+    $(".imagenContactos").attr("src",localStorage.getItem("imagenContactos"));
+    $(".imagenPromociones").attr("src",localStorage.getItem("imagenPromociones"));
 
 };
 hound.displayCategorias = function() {
@@ -116,7 +116,7 @@ hound.displayEncuesta = function() {
 };
 hound.displayTiendas = function() {
     $.mobile.showPageLoadingMsg();
-    $("#contenidoListaLocalizador").hide();
+    //$("#contenidoListaLocalizador").hide();
     $("#listListaLocalizador").html("");
     var template = Handlebars.templates['listTiendasTemplate'];
     for ( var i in hound.tiendas) {
