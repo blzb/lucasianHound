@@ -1,24 +1,19 @@
-<!DOCTYPE html> 
-<html> 
-    <!--div data-role="panel" data-id="menu" data-hash="crumbs" data-context="a#default" class="ui-mobile-viewport ui-panel ui-panel-left ui-overlay-a" style="width: 25%; min-width: 250px;"-->
-    <!--div data-role="panel" data-id="main" class="ui-mobile-viewport ui-panel ui-overlay-c ui-panel-right" style="width: 1428px;"-->
-    <head> 
-        <title>Jquery Mobile Splitview</title> 
-        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/jquery.mobile.structure-1.1.0.css" />
-        <!--link rel="stylesheet" href="css/jquery.mobile.theme-1.1.0.css" /-->        
-        <link rel="stylesheet" href="jqm_split/jquery.mobile.splitview.css" />
-        <link rel="stylesheet"  href="jqm_split/jquery.mobile.grids.collapsible.css" />
-        <script type="text/javascript" src="js-lib/jquery.js"></script>
-        <!--script type="text/javascript" src="jqm_split/jquery.mobile.splitview.js"></script-->
-        <script type="text/javascript" src="js-lib/jquery.mobile.js"></script>
+        <link rel="stylesheet" href="css/extra.css" />
         <script src="phonegap.js"></script>
-        <script src="js/PushNotification.js"></script>               
+        <script src="js/PushNotification.js"></script>
+        <script src="js-lib/jquery.js"></script>
+        <script src="js-lib/jquery.mobile.js"></script>
         <script src="js/hound.common.js"></script>
-        <script src="js/hound.conf.js"></script>        
+        <script src="js/hound.conf.js"></script>
         <script src="js/hound.home.js"></script>
         <script src="js/hound.display.js"></script>
-        <script src="js/hound.connection.js"></script>        
+        <script src="js/hound.connection.js"></script>
         <script src="js/hound.push.js"></script>
         <script src="js-lib/jquery.validate.js"></script>
         <script src="js-lib/handlebars.js"></script>
@@ -28,473 +23,180 @@
         <script src="js/templates/template.js"></script>
         <style type="text/css" id="jqueryStyle">
         </style>
+        <style type="text/css">
+            .gridMenuItem{
+                width: 180px;
+                display: inline-table;
+padding: 5px;
+            }
+            .gridMenuItemText{
+                width: 100%;
+                overflow: hidden;
+                text-align: center;
 
-    </head> 
-
-    <body> 
+            }
+            .gridMenuItem > a {
+                text-decoration: none;    
+                font-size: 75%;
+            }
+            .gridMenuItemImage{
+                text-align: center;
+                vertical-align: middle;
+            }
+            .gridMenu{
+                text-align: left;
+            }
+        </style>
+    </head>
+    <body>
         <div data-role="page" data-theme="a" id="menuPrincipal">
-            <div class="" style="width: 20%; min-width: 250px;">
-                <div data-role="header"  >
-                    <span class="ui-title" >&nbsp;</span>
-                </div>
-                <!-- /header -->
-                <div data-role="content" id="contenido">
-                    <ul data-role="listview" data-inset="true">
-                        <li><a href=""
-                                                 onclick="hound.getCategorias();"> <img src=""
-                                                                   class="ui-li-icon imagenCatalogo"  /> <span class="textoCatalogo"></span></a>
-                        </li>
-                        <li><a href=""
-                                                  onclick="hound.getContactosOffLine();"> <img src=""
-                                                                         class="ui-li-icon imagenContactos"  /> <span
-                                                                         class="textoContactos"></span>
-                            </a></li>
-                        <li><a href=""
-                                                    onclick="hound.getPromocionesOffline();"> <img src=""
-                                                                           class="ui-li-icon imagenPromociones"  /> <span
-                                                                           class="textoPromociones"></span></a></li>
-                        <li><a href=""
-                                                 onclick="hound.getEncuestas();"> <img src="" class="ui-li-icon imagenEncuesta"
-                                                                  /> <span class="textoEncuesta"></span></a></li>
-                        <li><a href=""
-                                                    onclick="hound.displayTiendas();"> <img src=""
-                                                                    class="ui-li-icon imagenLocalizador" /> <span
-                                                                    class="textoLocalizador"></span></a></li>
-                        <li><a href="" onclick="hound.displayFormularioComentarios()"
-                                                    > <img src="" class="ui-li-icon imagenComentarios"
-                                   /> <span class="textoComentarios"></span></a></li>
-                        <!--li ><a href="" onclick="window.open('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', '_system');" > system</a></li>
-                        <li><a href="" onclick="navigator.app.loadUrl('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', { openExternal:true } ); ">External</a></li>
-                        <li><a href="geo:19.432607700,-99.133208000" >geo</a></li-->
-                    </ul>
-                </div>
+            <div data-role="header"  >
+                <span class="ui-title" id="tituloMenuPrincipal"> </span>
             </div>
-            <div class="ui-mobile-viewport ui-panel ui-overlay-c ui-panel-right" style="width: 80%;">
-                <div data-role="header"  >
-                    <span class="ui-title" id="tituloMenuPrincipal"></span>
-                </div>
-                <!-- /header -->
-                <div data-role="content" >
-                    <p>El cuerpo</p>
+            <!-- /header -->
+            <div data-role="content" id="contenido">
+                <div class="gridMenu" >
+                    <div class="gridMenuItem" >
+                        <a href="" onclick="hound.getCategorias();"> 
+                            <div class="gridMenuItemImage">
+                                <img src="" class="ui-li-icon imagenCatalogo"  /> 
+                            </div>
+                            <div class="gridMenuItemText">
+                                <span class="textoCatalogo"></span>                        
+                            </div>                        
+                        </a>
+                    </div>
+                    <div class="gridMenuItem">
+                        <a href="" onclick="hound.getContactosOffLine();"> 
+                            <div class="gridMenuItemImage">
+                            <img src="" class="ui-li-icon imagenContactos" /> 
+                            </div>
+                            <div class="gridMenuItemText">
+                            <span class="textoContactos"></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="gridMenuItem">
+                        <a href="" onclick="hound.getPromocionesOffline();"> 
+                            <div class="gridMenuItemImage">
+                            <img src="" class="ui-li-icon imagenPromociones" /> 
+                            </div>
+                            <div class="gridMenuItemText">
+                            <span class="textoPromociones"></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="gridMenuItem">
+                        <a href="" onclick="hound.getEncuestas();"> 
+                            <div class="gridMenuItemImage">
+                            <img src="" class="ui-li-icon imagenEncuesta"/> 
+                            </div>
+                            <div class="gridMenuItemText">
+                            <span class="textoEncuesta"></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="gridMenuItem">
+
+                        <a href="" onclick="hound.displayTiendas();"> 
+                            <div class="gridMenuItemImage">
+                            <img src="" class="ui-li-icon imagenLocalizador"/> 
+                            </div>
+                            <div class="gridMenuItemText">
+                            <span class="textoLocalizador"></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="gridMenuItem">
+                        <a href="" onclick="hound.displayFormularioComentarios()"> 
+                            <div class="gridMenuItemImage">
+                            <img src="" class="ui-li-icon imagenComentarios"/> 
+                            </div>
+                            <div class="gridMenuItemText">
+                            <span class="textoComentarios"></span>
+                            </div>
+                        </a>
+                    </div>
+                    <!--li ><a href="" onclick="window.open('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', '_system');" > system</a></li>
+                    <li><a href="" onclick="navigator.app.loadUrl('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', { openExternal:true } ); ">External</a></li>
+                    <li><a href="geo:19.432607700,-99.133208000" >geo</a></li-->
                 </div>
             </div>
             <!-- /content -->
         </div>
         <div data-role="page" data-theme="a" id="Catalogo">
-            <div class="" style="width: 20%; min-width: 250px;">
-                <div data-role="header"  >
-                    <span class="ui-title" >&nbsp;</span>
-                </div>
-                <!-- /header -->
-                <div data-role="content" id="contenido">
-                    <ul data-role="listview" data-inset="true">
-                        <li><a href=""
-                                                 onclick="hound.getCategorias();"> <img src=""
-                                                                   class="ui-li-icon imagenCatalogo"  /> <span class="textoCatalogo"></span></a>
-                        </li>
-                        <li><a href=""
-                                                  onclick="hound.getContactosOffLine();"> <img src=""
-                                                                         class="ui-li-icon imagenContactos"  /> <span
-                                                                         class="textoContactos"></span>
-                            </a></li>
-                        <li><a href=""
-                                                    onclick="hound.getPromocionesOffline();"> <img src=""
-                                                                           class="ui-li-icon imagenPromociones"  /> <span
-                                                                           class="textoPromociones"></span></a></li>
-                        <li><a href=""
-                                                 onclick="hound.getEncuestas();"> <img src="" class="ui-li-icon imagenEncuesta"
-                                                                  /> <span class="textoEncuesta"></span></a></li>
-                        <li><a href=""
-                                                    onclick="hound.displayTiendas();"> <img src=""
-                                                                    class="ui-li-icon imagenLocalizador" /> <span
-                                                                    class="textoLocalizador"></span></a></li>
-                        <li><a href="" onclick="hound.displayFormularioComentarios()"
-                                                    > <img src="" class="ui-li-icon imagenComentarios"
-                                   /> <span class="textoComentarios"></span></a></li>
-                        <!--li ><a href="" onclick="window.open('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', '_system');" > system</a></li>
-                        <li><a href="" onclick="navigator.app.loadUrl('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', { openExternal:true } ); ">External</a></li>
-                        <li><a href="geo:19.432607700,-99.133208000" >geo</a></li-->
-                    </ul>
-                </div>
+            <div data-role="header"  >
+                <span class="ui-title" id="tituloCatalogo"> </span>
             </div>
-            <div class="ui-mobile-viewport ui-panel ui-overlay-c ui-panel-right" style="width: 80%;">
-                <div data-role="header"  >
-                    <span class="ui-title" id="tituloCatalogo"> </span>
-                </div>
-                <div data-role="content" id="contenidoCatalogo">
-                    <ul data-role="listview" data-theme="a" id="listCatalogos"
-                        data-inset="true">
-                    </ul>
-                </div>
+            <div data-role="content" id="contenidoCatalogo">
+                <ul data-role="listview" data-theme="a" id="listCatalogos"
+                    data-inset="true">
+                </ul>
             </div>
         </div>
         <div data-role="page" data-theme="a" id="Articulos">
-            <div class="" style="width: 20%; min-width: 250px;">
-                <div data-role="header"  >
-                    <span class="ui-title" >&nbsp;</span>
-                </div>
-                <!-- /header -->
-                <div data-role="content" id="contenido">
-                    <ul data-role="listview" data-inset="true">
-                        <li><a href=""
-                                                 onclick="hound.getCategorias();"> <img src=""
-                                                                   class="ui-li-icon imagenCatalogo"  /> <span class="textoCatalogo"></span></a>
-                        </li>
-                        <li><a href=""
-                                                  onclick="hound.getContactosOffLine();"> <img src=""
-                                                                         class="ui-li-icon imagenContactos"  /> <span
-                                                                         class="textoContactos"></span>
-                            </a></li>
-                        <li><a href=""
-                                                    onclick="hound.getPromocionesOffline();"> <img src=""
-                                                                           class="ui-li-icon imagenPromociones"  /> <span
-                                                                           class="textoPromociones"></span></a></li>
-                        <li><a href=""
-                                                 onclick="hound.getEncuestas();"> <img src="" class="ui-li-icon imagenEncuesta"
-                                                                  /> <span class="textoEncuesta"></span></a></li>
-                        <li><a href=""
-                                                    onclick="hound.displayTiendas();"> <img src=""
-                                                                    class="ui-li-icon imagenLocalizador" /> <span
-                                                                    class="textoLocalizador"></span></a></li>
-                        <li><a href="" onclick="hound.displayFormularioComentarios()"
-                                                    > <img src="" class="ui-li-icon imagenComentarios"
-                                   /> <span class="textoComentarios"></span></a></li>
-                        <!--li ><a href="" onclick="window.open('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', '_system');" > system</a></li>
-                        <li><a href="" onclick="navigator.app.loadUrl('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', { openExternal:true } ); ">External</a></li>
-                        <li><a href="geo:19.432607700,-99.133208000" >geo</a></li-->
-                    </ul>
-                </div>
+            <div data-role="header"  >
+                <span class="ui-title" id="tituloArticulos"> </span>
             </div>
-            <div class="ui-mobile-viewport ui-panel ui-overlay-c ui-panel-right" style="width: 80%;">
-                <div data-role="header"  >
-                    <span class="ui-title" id="tituloArticulos"> </span>
-                </div>
-                <div data-role="content" id="contenidoArticulos">
-                    <ul data-role="listview" data-theme="a" id="listArticulos"
-                        data-inset="true">
-                    </ul>
-                </div>
+            <div data-role="content" id="contenidoArticulos">
+                <ul data-role="listview" data-theme="a" id="listArticulos"
+                    data-inset="true">
+                </ul>
             </div>
         </div>
         <div data-role="page" data-theme="a" id="Articulo">
-            <div class="" style="width: 20%; min-width: 250px;">
-                <div data-role="header"  >
-                    <span class="ui-title" >&nbsp;</span>
-                </div>
-                <!-- /header -->
-                <div data-role="content" id="contenido">
-                    <ul data-role="listview" data-inset="true">
-                        <li><a href=""
-                                                 onclick="hound.getCategorias();"> <img src=""
-                                                                   class="ui-li-icon imagenCatalogo"  /> <span class="textoCatalogo"></span></a>
-                        </li>
-                        <li><a href=""
-                                                  onclick="hound.getContactosOffLine();"> <img src=""
-                                                                         class="ui-li-icon imagenContactos"  /> <span
-                                                                         class="textoContactos"></span>
-                            </a></li>
-                        <li><a href=""
-                                                    onclick="hound.getPromocionesOffline();"> <img src=""
-                                                                           class="ui-li-icon imagenPromociones"  /> <span
-                                                                           class="textoPromociones"></span></a></li>
-                        <li><a href=""
-                                                 onclick="hound.getEncuestas();"> <img src="" class="ui-li-icon imagenEncuesta"
-                                                                  /> <span class="textoEncuesta"></span></a></li>
-                        <li><a href=""
-                                                    onclick="hound.displayTiendas();"> <img src=""
-                                                                    class="ui-li-icon imagenLocalizador" /> <span
-                                                                    class="textoLocalizador"></span></a></li>
-                        <li><a href="" onclick="hound.displayFormularioComentarios()"
-                                                    > <img src="" class="ui-li-icon imagenComentarios"
-                                   /> <span class="textoComentarios"></span></a></li>
-                        <!--li ><a href="" onclick="window.open('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', '_system');" > system</a></li>
-                        <li><a href="" onclick="navigator.app.loadUrl('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', { openExternal:true } ); ">External</a></li>
-                        <li><a href="geo:19.432607700,-99.133208000" >geo</a></li-->
-                    </ul>
-                </div>
+            <div data-role="header"  >
+                <span class="ui-title" id="tituloArticulo"> </span>
             </div>
-            <div class="ui-mobile-viewport ui-panel ui-overlay-c ui-panel-right" style="width: 80%;">
-                <div data-role="header"  >
-                    <span class="ui-title" id="tituloArticulo"> </span>
-                </div>
-                <div data-role="content" id="contenidoArticulo"></div>
-            </div>
+            <div data-role="content" id="contenidoArticulo"></div>
         </div>
         <div data-role="page" data-theme="a" id="Contactos">
-            <div class="" style="width: 20%; min-width: 250px;">
-                <div data-role="header"  >
-                    <span class="ui-title" >&nbsp;</span>
-                </div>
-                <!-- /header -->
-                <div data-role="content" id="contenido">
-                    <ul data-role="listview" data-inset="true">
-                        <li><a href=""
-                                                 onclick="hound.getCategorias();"> <img src=""
-                                                                   class="ui-li-icon imagenCatalogo"  /> <span class="textoCatalogo"></span></a>
-                        </li>
-                        <li><a href=""
-                                                  onclick="hound.getContactosOffLine();"> <img src=""
-                                                                         class="ui-li-icon imagenContactos"  /> <span
-                                                                         class="textoContactos"></span>
-                            </a></li>
-                        <li><a href=""
-                                                    onclick="hound.getPromocionesOffline();"> <img src=""
-                                                                           class="ui-li-icon imagenPromociones"  /> <span
-                                                                           class="textoPromociones"></span></a></li>
-                        <li><a href=""
-                                                 onclick="hound.getEncuestas();"> <img src="" class="ui-li-icon imagenEncuesta"
-                                                                  /> <span class="textoEncuesta"></span></a></li>
-                        <li><a href=""
-                                                    onclick="hound.displayTiendas();"> <img src=""
-                                                                    class="ui-li-icon imagenLocalizador" /> <span
-                                                                    class="textoLocalizador"></span></a></li>
-                        <li><a href="" onclick="hound.displayFormularioComentarios()"
-                                                    > <img src="" class="ui-li-icon imagenComentarios"
-                                   /> <span class="textoComentarios"></span></a></li>
-                        <!--li ><a href="" onclick="window.open('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', '_system');" > system</a></li>
-                        <li><a href="" onclick="navigator.app.loadUrl('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', { openExternal:true } ); ">External</a></li>
-                        <li><a href="geo:19.432607700,-99.133208000" >geo</a></li-->
-                    </ul>
-                </div>
+            <div data-role="header"  >
+                <span class="ui-title" id="tituloContactos"> </span>
             </div>
-            <div class="ui-mobile-viewport ui-panel ui-overlay-c ui-panel-right" style="width: 80%;">
-                <div data-role="header"  >
-                    <span class="ui-title" id="tituloContactos"> </span>
-                </div>
-                <div data-role="content" id="contenidoContactos">
-                    <ul data-role="listview" data-theme="a" id="listContactos"
-                        data-inset="true">
-                    </ul>
-                </div>
+            <div data-role="content" id="contenidoContactos">
+                <ul data-role="listview" data-theme="a" id="listContactos"
+                    data-inset="true">
+                </ul>
             </div>
         </div>
         <div data-role="page" data-theme="a" id="Promociones">
-            <div class="" style="width: 20%; min-width: 250px;">
-                <div data-role="header"  >
-                    <span class="ui-title" >&nbsp;</span>
-                </div>
-                <!-- /header -->
-                <div data-role="content" id="contenido">
-                    <ul data-role="listview" data-inset="true">
-                        <li><a href=""
-                                                 onclick="hound.getCategorias();"> <img src=""
-                                                                   class="ui-li-icon imagenCatalogo"  /> <span class="textoCatalogo"></span></a>
-                        </li>
-                        <li><a href=""
-                                                  onclick="hound.getContactosOffLine();"> <img src=""
-                                                                         class="ui-li-icon imagenContactos"  /> <span
-                                                                         class="textoContactos"></span>
-                            </a></li>
-                        <li><a href=""
-                                                    onclick="hound.getPromocionesOffline();"> <img src=""
-                                                                           class="ui-li-icon imagenPromociones"  /> <span
-                                                                           class="textoPromociones"></span></a></li>
-                        <li><a href=""
-                                                 onclick="hound.getEncuestas();"> <img src="" class="ui-li-icon imagenEncuesta"
-                                                                  /> <span class="textoEncuesta"></span></a></li>
-                        <li><a href=""
-                                                    onclick="hound.displayTiendas();"> <img src=""
-                                                                    class="ui-li-icon imagenLocalizador" /> <span
-                                                                    class="textoLocalizador"></span></a></li>
-                        <li><a href="" onclick="hound.displayFormularioComentarios()"
-                                                    > <img src="" class="ui-li-icon imagenComentarios"
-                                   /> <span class="textoComentarios"></span></a></li>
-                        <!--li ><a href="" onclick="window.open('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', '_system');" > system</a></li>
-                        <li><a href="" onclick="navigator.app.loadUrl('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', { openExternal:true } ); ">External</a></li>
-                        <li><a href="geo:19.432607700,-99.133208000" >geo</a></li-->
-                    </ul>
-                </div>
+            <div data-role="header"  >
+                <span class="ui-title" id="tituloPromociones"> </span>
             </div>
-            <div class="ui-mobile-viewport ui-panel ui-overlay-c ui-panel-right" style="width: 80%;">
-                <div data-role="header"  >
-                    <span class="ui-title" id="tituloPromociones"> </span>
-                </div>
-                <div data-role="content" id="contenidoPromociones">
-                    <ul data-role="listview" data-theme="a" id="listPromociones"
-                        data-inset="true">
-                    </ul>
-                </div>
+            <div data-role="content" id="contenidoPromociones">
+                <ul data-role="listview" data-theme="a" id="listPromociones"
+                    data-inset="true">
+                </ul>
             </div>
         </div>
         <div data-role="page" data-theme="a" id="Promocion">
-            <div class="" style="width: 20%; min-width: 250px;">
-                <div data-role="header"  >
-                    <span class="ui-title" >&nbsp;</span>
-                </div>
-                <!-- /header -->
-                <div data-role="content" id="contenido">
-                    <ul data-role="listview" data-inset="true">
-                        <li><a href=""
-                                                 onclick="hound.getCategorias();"> <img src=""
-                                                                   class="ui-li-icon imagenCatalogo"  /> <span class="textoCatalogo"></span></a>
-                        </li>
-                        <li><a href=""
-                                                  onclick="hound.getContactosOffLine();"> <img src=""
-                                                                         class="ui-li-icon imagenContactos"  /> <span
-                                                                         class="textoContactos"></span>
-                            </a></li>
-                        <li><a href=""
-                                                    onclick="hound.getPromocionesOffline();"> <img src=""
-                                                                           class="ui-li-icon imagenPromociones"  /> <span
-                                                                           class="textoPromociones"></span></a></li>
-                        <li><a href=""
-                                                 onclick="hound.getEncuestas();"> <img src="" class="ui-li-icon imagenEncuesta"
-                                                                  /> <span class="textoEncuesta"></span></a></li>
-                        <li><a href=""
-                                                    onclick="hound.displayTiendas();"> <img src=""
-                                                                    class="ui-li-icon imagenLocalizador" /> <span
-                                                                    class="textoLocalizador"></span></a></li>
-                        <li><a href="" onclick="hound.displayFormularioComentarios()"
-                                                    > <img src="" class="ui-li-icon imagenComentarios"
-                                   /> <span class="textoComentarios"></span></a></li>
-                        <!--li ><a href="" onclick="window.open('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', '_system');" > system</a></li>
-                        <li><a href="" onclick="navigator.app.loadUrl('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', { openExternal:true } ); ">External</a></li>
-                        <li><a href="geo:19.432607700,-99.133208000" >geo</a></li-->
-                    </ul>
-                </div>
+            <div data-role="header"  >
+                <span class="ui-title" id="tituloPromocion"> </span>
             </div>
-            <div class="ui-mobile-viewport ui-panel ui-overlay-c ui-panel-right" style="width: 80%;">
-                <div data-role="header"  >
-                    <span class="ui-title" id="tituloPromocion"> </span>
-                </div>
-                <div data-role="content" id="contenidoPromocion"></div>
-            </div>
+            <div data-role="content" id="contenidoPromocion"></div>
         </div>
         <div data-role="page" data-theme="a" id="Encuestas">
-            <div class="" style="width: 20%; min-width: 250px;">
-                <div data-role="header"  >
-                    <span class="ui-title" >&nbsp;</span>
-                </div>
-                <!-- /header -->
-                <div data-role="content" id="contenido">
-                    <ul data-role="listview" data-inset="true">
-                        <li><a href=""
-                                                 onclick="hound.getCategorias();"> <img src=""
-                                                                   class="ui-li-icon imagenCatalogo"  /> <span class="textoCatalogo"></span></a>
-                        </li>
-                        <li><a href=""
-                                                  onclick="hound.getContactosOffLine();"> <img src=""
-                                                                         class="ui-li-icon imagenContactos"  /> <span
-                                                                         class="textoContactos"></span>
-                            </a></li>
-                        <li><a href=""
-                                                    onclick="hound.getPromocionesOffline();"> <img src=""
-                                                                           class="ui-li-icon imagenPromociones"  /> <span
-                                                                           class="textoPromociones"></span></a></li>
-                        <li><a href=""
-                                                 onclick="hound.getEncuestas();"> <img src="" class="ui-li-icon imagenEncuesta"
-                                                                  /> <span class="textoEncuesta"></span></a></li>
-                        <li><a href=""
-                                                    onclick="hound.displayTiendas();"> <img src=""
-                                                                    class="ui-li-icon imagenLocalizador" /> <span
-                                                                    class="textoLocalizador"></span></a></li>
-                        <li><a href="" onclick="hound.displayFormularioComentarios()"
-                                                    > <img src="" class="ui-li-icon imagenComentarios"
-                                   /> <span class="textoComentarios"></span></a></li>
-                        <!--li ><a href="" onclick="window.open('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', '_system');" > system</a></li>
-                        <li><a href="" onclick="navigator.app.loadUrl('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', { openExternal:true } ); ">External</a></li>
-                        <li><a href="geo:19.432607700,-99.133208000" >geo</a></li-->
-                    </ul>
-                </div>
+            <div data-role="header"  >
+                <span class="ui-title" id="tituloEncuestas"></span>
             </div>
-            <div class="ui-mobile-viewport ui-panel ui-overlay-c ui-panel-right" style="width: 80%;">
-                <div data-role="header"  >
-                    <span class="ui-title" id="tituloEncuestas"></span>
-                </div>
-                <div data-role="content" id="contenidoEncuestas">
-                    <ul data-role="listview" data-theme="a" id="listEncuestas"
-                        data-inset="true">
-                    </ul>
-                </div>
+            <div data-role="content" id="contenidoEncuestas">
+                <ul data-role="listview" data-theme="a" id="listEncuestas"
+                    data-inset="true">
+                </ul>
             </div>
         </div>
         <div data-role="page" data-theme="a" id="Encuesta">
-            <div class="" style="width: 20%; min-width: 250px;">
-                <div data-role="header"  >
-                    <span class="ui-title" >&nbsp;</span>
-                </div>
-                <!-- /header -->
-                <div data-role="content" id="contenido">
-                    <ul data-role="listview" data-inset="true">
-                        <li><a href=""
-                                                 onclick="hound.getCategorias();"> <img src=""
-                                                                   class="ui-li-icon imagenCatalogo"  /> <span class="textoCatalogo"></span></a>
-                        </li>
-                        <li><a href=""
-                                                  onclick="hound.getContactosOffLine();"> <img src=""
-                                                                         class="ui-li-icon imagenContactos"  /> <span
-                                                                         class="textoContactos"></span>
-                            </a></li>
-                        <li><a href=""
-                                                    onclick="hound.getPromocionesOffline();"> <img src=""
-                                                                           class="ui-li-icon imagenPromociones"  /> <span
-                                                                           class="textoPromociones"></span></a></li>
-                        <li><a href=""
-                                                 onclick="hound.getEncuestas();"> <img src="" class="ui-li-icon imagenEncuesta"
-                                                                  /> <span class="textoEncuesta"></span></a></li>
-                        <li><a href=""
-                                                    onclick="hound.displayTiendas();"> <img src=""
-                                                                    class="ui-li-icon imagenLocalizador" /> <span
-                                                                    class="textoLocalizador"></span></a></li>
-                        <li><a href="" onclick="hound.displayFormularioComentarios()"
-                                                    > <img src="" class="ui-li-icon imagenComentarios"
-                                   /> <span class="textoComentarios"></span></a></li>
-                        <!--li ><a href="" onclick="window.open('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', '_system');" > system</a></li>
-                        <li><a href="" onclick="navigator.app.loadUrl('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', { openExternal:true } ); ">External</a></li>
-                        <li><a href="geo:19.432607700,-99.133208000" >geo</a></li-->
-                    </ul>
-                </div>
+            <div data-role="header"  >
+                <span class="ui-title" id="tituloEncuesta"> </span>
             </div>
-            <div class="ui-mobile-viewport ui-panel ui-overlay-c ui-panel-right" style="width: 80%;">
-                <div data-role="header"  >
-                    <span class="ui-title" id="tituloEncuesta"> </span>
-                </div>
-                <div data-role="content" id="contenidoEncuesta"></div>
-            </div>
+            <div data-role="content" id="contenidoEncuesta"></div>
         </div>
         <div data-role="page" data-theme="a" id="Localizador">
-            <div class="" style="width: 20%; min-width: 250px;">
-                <div data-role="header"  >
-                    <span class="ui-title" >&nbsp;</span>
-                </div>
-                <!-- /header -->
-                <div data-role="content" id="contenido">
-                    <ul data-role="listview" data-inset="true">
-                        <li><a href=""
-                                                 onclick="hound.getCategorias();"> <img src=""
-                                                                   class="ui-li-icon imagenCatalogo"  /> <span class="textoCatalogo"></span></a>
-                        </li>
-                        <li><a href=""
-                                                  onclick="hound.getContactosOffLine();"> <img src=""
-                                                                         class="ui-li-icon imagenContactos"  /> <span
-                                                                         class="textoContactos"></span>
-                            </a></li>
-                        <li><a href=""
-                                                    onclick="hound.getPromocionesOffline();"> <img src=""
-                                                                           class="ui-li-icon imagenPromociones"  /> <span
-                                                                           class="textoPromociones"></span></a></li>
-                        <li><a href=""
-                                                 onclick="hound.getEncuestas();"> <img src="" class="ui-li-icon imagenEncuesta"
-                                                                  /> <span class="textoEncuesta"></span></a></li>
-                        <li><a href=""
-                                                    onclick="hound.displayTiendas();"> <img src=""
-                                                                    class="ui-li-icon imagenLocalizador" /> <span
-                                                                    class="textoLocalizador"></span></a></li>
-                        <li><a href="" onclick="hound.displayFormularioComentarios()"
-                                                    > <img src="" class="ui-li-icon imagenComentarios"
-                                   /> <span class="textoComentarios"></span></a></li>
-                        <!--li ><a href="" onclick="window.open('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', '_system');" > system</a></li>
-                        <li><a href="" onclick="navigator.app.loadUrl('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', { openExternal:true } ); ">External</a></li>
-                        <li><a href="geo:19.432607700,-99.133208000" >geo</a></li-->
-                    </ul>
-                </div>
+            <div data-role="header"  >
+                <span class="ui-title" id="tituloLocalizador"> </span>
             </div>
-            <div class="ui-mobile-viewport ui-panel ui-overlay-c ui-panel-right" style="width: 80%;">
-                <div data-role="header"  >
-                    <span class="ui-title" id="tituloLocalizador"> </span>
-                </div>
-                <div data-role="content" id="contenidoLocalizador"></div>
-            </div>
+            <div data-role="content" id="contenidoLocalizador"></div>
         </div>
         <!--div data-role="page" data-theme="a" id="opcionesLocalizador">
             <div data-role="header"  >
@@ -510,149 +212,35 @@
             </div>
         </div-->
         <div data-role="page" data-theme="a" id="listaLocalizador">
-            <div class="" style="width: 20%; min-width: 250px;">
-                <div data-role="header"  >
-                    <span class="ui-title" >&nbsp;</span>
-                </div>
-                <!-- /header -->
-                <div data-role="content" id="contenido">
-                    <ul data-role="listview" data-inset="true">
-                        <li><a href=""
-                                                 onclick="hound.getCategorias();"> <img src=""
-                                                                   class="ui-li-icon imagenCatalogo"  /> <span class="textoCatalogo"></span></a>
-                        </li>
-                        <li><a href=""
-                                                  onclick="hound.getContactosOffLine();"> <img src=""
-                                                                         class="ui-li-icon imagenContactos"  /> <span
-                                                                         class="textoContactos"></span>
-                            </a></li>
-                        <li><a href=""
-                                                    onclick="hound.getPromocionesOffline();"> <img src=""
-                                                                           class="ui-li-icon imagenPromociones"  /> <span
-                                                                           class="textoPromociones"></span></a></li>
-                        <li><a href=""
-                                                 onclick="hound.getEncuestas();"> <img src="" class="ui-li-icon imagenEncuesta"
-                                                                  /> <span class="textoEncuesta"></span></a></li>
-                        <li><a href=""
-                                                    onclick="hound.displayTiendas();"> <img src=""
-                                                                    class="ui-li-icon imagenLocalizador" /> <span
-                                                                    class="textoLocalizador"></span></a></li>
-                        <li><a href="" onclick="hound.displayFormularioComentarios()"
-                                                    > <img src="" class="ui-li-icon imagenComentarios"
-                                   /> <span class="textoComentarios"></span></a></li>
-                        <!--li ><a href="" onclick="window.open('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', '_system');" > system</a></li>
-                        <li><a href="" onclick="navigator.app.loadUrl('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', { openExternal:true } ); ">External</a></li>
-                        <li><a href="geo:19.432607700,-99.133208000" >geo</a></li-->
-                    </ul>
-                </div>
+            <div data-role="header"  >
+                <span class="ui-title" id="tituloListaLocalizador">Ubicaciones
+                    existentes</span>
             </div>
-            <div class="ui-mobile-viewport ui-panel ui-overlay-c ui-panel-right" style="width: 80%;">
-                <div data-role="header"  >
-                    <span class="ui-title" id="tituloListaLocalizador">Ubicaciones
-                        existentes</span>
-                </div>
-                <div data-role="content" id="contenidoListaLocalizador">
-                    <ul data-role="listview" data-theme="a" id="listListaLocalizador"
-                        data-inset="true">
-                    </ul>
-                </div>
+            <div data-role="content" id="contenidoListaLocalizador">
+                <ul data-role="listview" data-theme="a" id="listListaLocalizador"
+                    data-inset="true">
+                </ul>
             </div>
         </div>
         <div data-role="page" data-theme="a" id="Mapa">
-            <div class="" style="width: 20%; min-width: 250px;">
-                <div data-role="header"  >
-                    <span class="ui-title" >&nbsp;</span>
-                </div>
-                <!-- /header -->
-                <div data-role="content" id="contenido">
-                    <ul data-role="listview" data-inset="true">
-                        <li><a href=""
-                                                 onclick="hound.getCategorias();"> <img src=""
-                                                                   class="ui-li-icon imagenCatalogo"  /> <span class="textoCatalogo"></span></a>
-                        </li>
-                        <li><a href=""
-                                                  onclick="hound.getContactosOffLine();"> <img src=""
-                                                                         class="ui-li-icon imagenContactos"  /> <span
-                                                                         class="textoContactos"></span>
-                            </a></li>
-                        <li><a href=""
-                                                    onclick="hound.getPromocionesOffline();"> <img src=""
-                                                                           class="ui-li-icon imagenPromociones"  /> <span
-                                                                           class="textoPromociones"></span></a></li>
-                        <li><a href=""
-                                                 onclick="hound.getEncuestas();"> <img src="" class="ui-li-icon imagenEncuesta"
-                                                                  /> <span class="textoEncuesta"></span></a></li>
-                        <li><a href=""
-                                                    onclick="hound.displayTiendas();"> <img src=""
-                                                                    class="ui-li-icon imagenLocalizador" /> <span
-                                                                    class="textoLocalizador"></span></a></li>
-                        <li><a href="" onclick="hound.displayFormularioComentarios()"
-                                                    > <img src="" class="ui-li-icon imagenComentarios"
-                                   /> <span class="textoComentarios"></span></a></li>
-                        <!--li ><a href="" onclick="window.open('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', '_system');" > system</a></li>
-                        <li><a href="" onclick="navigator.app.loadUrl('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', { openExternal:true } ); ">External</a></li>
-                        <li><a href="geo:19.432607700,-99.133208000" >geo</a></li-->
-                    </ul>
-                </div>
+            <div data-role="header"  >
+                <span class="ui-title" id="tituloMapa">Mapa</span>
             </div>
-            <div class="ui-mobile-viewport ui-panel ui-overlay-c ui-panel-right" style="width: 80%;">
-                <div data-role="header"  >
-                    <span class="ui-title" id="tituloMapa">Mapa</span>
-                </div>
-                <div data-role="content" id="contenidoMapa">
-                    <div id="map_directions" style=""></div>
-                    <div id="map_canvas"
-                         style="width: 100%; height: 350px; color: #222222;"></div>
-                </div>
+            <div data-role="content" id="contenidoMapa">
+                <div id="map_directions" style=""></div>
+                <div id="map_canvas"
+                     style="width: 100%; height: 350px; color: #222222;"></div>
             </div>
         </div>
         <div data-role="page" data-theme="a" id="Comentarios">
-            <div class="" style="width: 20%; min-width: 250px;">
-                <div data-role="header"  >
-                    <span class="ui-title" >&nbsp;</span>
-                </div>
-                <!-- /header -->
-                <div data-role="content" id="contenido">
-                    <ul data-role="listview" data-inset="true">
-                        <li><a href=""
-                                                 onclick="hound.getCategorias();"> <img src=""
-                                                                   class="ui-li-icon imagenCatalogo"  /> <span class="textoCatalogo"></span></a>
-                        </li>
-                        <li><a href=""
-                                                  onclick="hound.getContactosOffLine();"> <img src=""
-                                                                         class="ui-li-icon imagenContactos"  /> <span
-                                                                         class="textoContactos"></span>
-                            </a></li>
-                        <li><a href=""
-                                                    onclick="hound.getPromocionesOffline();"> <img src=""
-                                                                           class="ui-li-icon imagenPromociones"  /> <span
-                                                                           class="textoPromociones"></span></a></li>
-                        <li><a href=""
-                                                 onclick="hound.getEncuestas();"> <img src="" class="ui-li-icon imagenEncuesta"
-                                                                  /> <span class="textoEncuesta"></span></a></li>
-                        <li><a href=""
-                                                    onclick="hound.displayTiendas();"> <img src=""
-                                                                    class="ui-li-icon imagenLocalizador" /> <span
-                                                                    class="textoLocalizador"></span></a></li>
-                        <li><a href="" onclick="hound.displayFormularioComentarios()"
-                                                    > <img src="" class="ui-li-icon imagenComentarios"
-                                   /> <span class="textoComentarios"></span></a></li>
-                        <!--li ><a href="" onclick="window.open('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', '_system');" > system</a></li>
-                        <li><a href="" onclick="navigator.app.loadUrl('https://maps.google.com/maps?z=12&t=m&q=loc:19.432607700+-99.133208000', { openExternal:true } ); ">External</a></li>
-                        <li><a href="geo:19.432607700,-99.133208000" >geo</a></li-->
-                    </ul>
-                </div>
+            <div data-role="header"  >
+                <span class="ui-title" id="tituloComentarios"> </span>
             </div>
-            <div class="ui-mobile-viewport ui-panel ui-overlay-c ui-panel-right" style="width: 80%;">
-                <div data-role="header"  >
-                    <span class="ui-title" id="tituloComentarios"> </span>
-                </div>
-                <div data-role="content" id="contenidoComentarios">
-                </div>
+            <div data-role="content" id="contenidoComentarios">
             </div>
         </div>
-        <script type="text/javascript">            
+        <script type="text/javascript">
             onDeviceReady();
-        </script>	
+        </script>
     </body>
 </html>
