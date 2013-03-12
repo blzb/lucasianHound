@@ -1,16 +1,66 @@
+.gridMenuItem{
+    width: 180px;
+    display: inline-table;
+    padding: 5px;
+}
+.gridMenuItemText{
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
 
-.content-primary {
-		width: 70%;
-		float: right;
-		margin-top: 30px;
-		margin-right: 1%;
-		padding-right: 1%;
-	}
-        .content-secondary {
-		text-align: left;
-		float: left;
-		width: 20%;
-		background-color: none;
-		border-top: 0;
-                height: 500px;;
-	}
+}
+.gridMenuItem > a {
+    text-decoration: none;    
+    font-size: 75%;
+}
+.gridMenuItemImage{
+    text-align: center;
+    vertical-align: middle;
+}
+.gridMenu{
+    text-align: left;
+}
+/* Media Queries ------------------------------------------------------------------------------------ */
+
+/* iPhone, etc portrait ---- */
+@media only screen and (max-width: 320px) {
+    .gridMenuItem{
+        width: 70px;
+    }
+}
+
+
+/* iPhone, etc portrait ---- */
+@media only screen and (min-width: 321px) {
+    .gridMenuItem{
+        width: 90px;
+    }
+}
+
+/* iPhone, etc landscape ---- */
+@media only screen and (min-width: 480px) {
+    .gridMenuItem{
+        width: 180px;
+    }
+}
+
+/* iPad, tablets etc portrait ---- */
+@media only screen and (min-width: 768px) {
+    .gridMenuItem{
+        width: 120px;
+    }
+}
+
+/* Laptops, Desktops, etc ---- */
+@media only screen and (min-width: 1024px) {
+    .gridMenuItem{
+        width: 160px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .gridMenuItem{
+        width: 200px;
+    }
+}
+
