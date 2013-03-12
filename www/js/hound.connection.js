@@ -157,7 +157,7 @@ hound.getImagen= function(imagen,url){
     $.ajax({
         type : "GET",
         url : hound.config.remote_server_files
-        + url+"large.dat",
+        + url+"larger.dat",
         cache : false,
         dataType : "text",
         success: function(data){
