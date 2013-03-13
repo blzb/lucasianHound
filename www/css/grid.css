@@ -1,7 +1,7 @@
 .gridMenuItem{
-    display: inline-table;
+    display: inline-block;
     vertical-align: top;
-    background-color: black;
+    height: 110px;
 }
 .gridMenuItemText{
     width: 100%;
@@ -25,7 +25,7 @@
 /* iPhone, etc portrait ---- */
 @media only screen and (max-width: 320px) {
     .gridMenuItem{
-        width: 93px;
+        width: 50%;
         padding: 0;
     }
 }
@@ -34,21 +34,21 @@
 /* iPhone, etc portrait ---- */
 @media only screen and (min-width: 321px) {
     .gridMenuItem{
-        width: 80px;
+        width: 33%;
     }
 }
 
 /* iPhone, etc landscape ---- */
 @media only screen and (min-width: 480px) {
     .gridMenuItem{
-        width: 108px;
+        width: 25%;
     }
 }
 
 /* iPad, tablets etc portrait ---- */
 @media only screen and (min-width: 768px) {
     .gridMenuItem{
-        width: 144px;
+        width: 20%;
     }
 }
 
@@ -56,12 +56,6 @@
 @media only screen and (min-width: 1024px) {
     .gridMenuItem{
         width: 162px;
-    }
-}
-
-@media only screen and (min-width: 1200px) {
-    .gridMenuItem{
-        width: 230px;
     }
 }
 
